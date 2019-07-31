@@ -1,126 +1,53 @@
 <html>
-	<head>
-		<title>
-			HOOPERLABS.TK
-		</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<style>
-		.navbar {
-		  overflow: hidden;
-		  background-color: #333;
-		  font-family: Arial, Helvetica, sans-serif;
-		}
 
-		.navbar a {
-		  float: left;
-		  font-size: 16px;
-		  color: white;
-		  text-align: center;
-		  padding: 14px 16px;
-		  text-decoration: none;
-		}
+<head>
+    <title>
+        HOOPERLABS.TK
+    </title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/menu.js"></script>
+</head>
 
-		.dropdown {
-		  float: left;
-		  overflow: hidden;
-		}
+<body>
+    <h1>
+        Welcome to Hooper Labs
+    </h1>
+    <br />
+    <div class="navbar">
+        <a href="#">Home</a>
+        <div class="dropdown">
+            <button onclick="showOptions()" class="dropbtn">
+                Topics
+            </button>
+            <div id="menuDropdown" class="dropdown-content">
+                <a href="#">Active Directory</a>
+                <a href="#">Boot 2 Root</a>
+                <a href="#">Exploit Articles</a>
+            </div>
+        </div>
+        <a href="#">About Me</a>
+    </div>
+    <div class="body-content">
+        <h3>
+            Purpose
+        </h3>
+        <p class="text">
+            Over the last few years, I have learned an incredible amount about information security and computer security, both how to conduct attacks and defend against them. This site serves to keep track of the things I have learned and hopefully help others who are interested in the field.
+        </p>
+        <br />
+    </div>
+    <div>
+        <img src="./img/cat.jpg" height="100px" width="200px">
+    </div>
+</body>
+<footer>
+    <h3>
+        Contact Me:
+    </h3>
+    <p>
+        If you have any questions, suggestions, or concerns, please contact me through my <a href="https://www.github.com/caryhooper">github page</a>.
+    </p>
+</footer>
 
-		.dropdown .dropbtn {
-		  cursor: pointer;
-		  font-size: 16px;  
-		  border: none;
-		  outline: none;
-		  color: white;
-		  padding: 14px 16px;
-		  background-color: inherit;
-		  font-family: inherit;
-		  margin: 0;
-		}
-
-		.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-		  background-color: red;
-		}
-
-		.dropdown-content {
-		  display: none;
-		  position: absolute;
-		  background-color: #f9f9f9;
-		  min-width: 160px;
-		  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-		  z-index: 1;
-		}
-
-		.dropdown-content a {
-		  float: none;
-		  color: black;
-		  padding: 12px 16px;
-		  text-decoration: none;
-		  display: block;
-		  text-align: left;
-		}
-
-		.dropdown-content a:hover {
-		  background-color: #ddd;
-		}
-
-		.show {
-		  display: block;
-		}
-		</style>
-	</head>
-	<body>
-		<h1>
-			Welcome to Hooper Labs
-		</h1>
-		<br/>
-		<div class="navbar">
-			<a href="#">Home</a>
-			<div class="dropdown">
-				<button onclick="showOptions()" class="dropbtn">
-					Topics
-				</button>
-				<div id="menuDropdown" class="dropdown-content">
-					<a href="#">Active Directory</a>
-					<a href="#">Boot 2 Root</a>
-					<a href="#">Exploit Articles</a>
-				</div>
-			</div>
-			<a href="#">About Me</a>
-		</div>
-		<div class="body-content">
-			<h3>
-				Purpose
-			</h3>
-			<p class="text">
-				Over the last few years, I have learned an incredible amount about information security and computer security, both how to conduct attacks and defend against them.  This site serves to keep track of the things I have learned and hopefully help others who are interested in the field.
-			</p>
-			<br/>
-
-		</div>
-		<div>
-			<img src="https://www.petsworld.in/blog/wp-content/uploads/2014/09/adorable-cat-1024x576.jpg" height="100px" width="200px">
-		</div>
-		<script>
-			function showOptions() {
-				document.getElementById("menuDropdown").classList.toggle("show");
-			}
-			window.onclick = function(e) {
-				if (!e.target.matches('.dropbtn')) {
-					var menuDropdown = document.getElementById("menuDropdown");
-					if (menuDropdown.classList.contains('show')) {
-						menuDropdown.classList.remove('show');
-					}
-
-				}
-			}
-		</script>
-	</body>
-	<footer>
-		<h3>
-			Contact Me:
-		</h3>
-		<p>
-			If you have any questions, suggestions, or concerns, please contact me through my <a href="https://www.github.com/caryhooper">github page</a>. 
-		</p>
-	</footer>
 </html>
