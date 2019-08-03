@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.70 scan initiated Fri Aug  2 17:55:46 2019 as: nmap -p- -oA nmap/192.168.0.116 -Pn -T5 -sV -v0 192.168.0.116 -->
+<nmaprun scanner="nmap" args="nmap -p- -oA nmap/192.168.0.116 -Pn -T5 -sV -v0 192.168.0.116" start="1564782946" startstr="Fri Aug  2 17:55:46 2019" version="7.70" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1564782947" endtime="1564782961"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.0.116" addrtype="ipv4"/>
+<address addr="00:0C:29:11:13:FB" addrtype="mac" vendor="VMware"/>
+<hostnames>
+<hostname name="weakness.jth" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="65532">
+<extrareasons reason="resets" count="65532"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" product="OpenSSH" version="7.6p1 Ubuntu 4" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:7.6p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.4.29" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.29</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.4.29" extrainfo="(Ubuntu)" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.29</cpe></service></port>
+</ports>
+<times srtt="792" rttvar="1404" to="50000"/>
+</host>
+<runstats><finished time="1564782961" timestr="Fri Aug  2 17:56:01 2019" elapsed="14.39" summary="Nmap done at Fri Aug  2 17:56:01 2019; 1 IP address (1 host up) scanned in 14.39 seconds" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,15 @@
+# Nmap 7.70 scan initiated Fri Aug  2 17:55:46 2019 as: nmap -p- -oA nmap/192.168.0.116 -Pn -T5 -sV -v0 192.168.0.116
+mass_dns: warning: Unable to open /etc/resolv.conf. Try using --system-dns or specify valid servers with --dns-servers
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for weakness.jth (192.168.0.116)
+Host is up (0.00079s latency).
+Not shown: 65532 closed ports
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+80/tcp  open  http     Apache httpd 2.4.29 ((Ubuntu))
+443/tcp open  ssl/http Apache httpd 2.4.29 ((Ubuntu))
+MAC Address: 00:0C:29:11:13:FB (VMware)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Aug  2 17:56:01 2019 -- 1 IP address (1 host up) scanned in 14.39 seconds

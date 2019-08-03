@@ -1,0 +1,4 @@
+# Nmap 7.70 scan initiated Fri Aug  2 17:55:46 2019 as: nmap -p- -oA nmap/192.168.0.116 -Pn -T5 -sV -v0 192.168.0.116
+Host: 192.168.0.116 (weakness.jth)	Status: Up
+Host: 192.168.0.116 (weakness.jth)	Ports: 22/open/tcp//ssh//OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)/, 80/open/tcp//http//Apache httpd 2.4.29 ((Ubuntu))/, 443/open/tcp//ssl|http//Apache httpd 2.4.29 ((Ubuntu))/	Ignored State: closed (65532)
+# Nmap done at Fri Aug  2 17:56:01 2019 -- 1 IP address (1 host up) scanned in 14.39 seconds
