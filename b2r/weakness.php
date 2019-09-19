@@ -1,33 +1,10 @@
 <html>
 
-<head>
-    <title>
-        HOOPERLABS.TK
-    </title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/menu.js"></script>
-</head>
+<?php include '../header.php';?>
 
 <body>
-    <h1>
-        Welcome to Hooper Labs
-    </h1>
-    <br />
-    <div class="navbar">
-        <a href="./index.html">Home</a>
-        <div class="dropdown">
-            <button onclick="showOptions()" class="dropbtn">
-                Topics
-            </button>
-            <div id="menuDropdown" class="dropdown-content">
-                <a href="#">Active Directory</a>
-                <a href="./b2r-weakness.html">Boot 2 Root</a>
-                <a href="#">Exploit Articles</a>
-            </div>
-        </div>
-        <a href="./about-me.html">About Me</a>
-    </div>
+
+<?php include '../navbar.php';?>
 
     <div class="body-content">
         <h3>
@@ -252,12 +229,7 @@
 
 
 </body>
-<footer>
-    <h3>
-        Contact Me:
-    </h3>
-    <p>
-        If you have any questions, suggestions, or concerns, please contact me through my <a href="https://www.github.com/caryhooper">github page</a>.
-    </p>
-</footer>
+
+<?php include '../footer.php';?>
+
 </html>
