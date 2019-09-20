@@ -10,7 +10,7 @@
         <h3>
             W34KN3SS (Weakness) &nbsp;&nbsp;&nbsp;&nbsp;  
         </h3>
-        <img src="./img/pwn.png" alt="Hack the Planet" height="50px" width="50px" align="middle" align="left">
+        <img src="/img/pwn.png" alt="Hack the Planet" height="50px" width="50px" align="middle" align="left">
         <p class="text">
             I can't sing enough praises about W34KN3SS by askar <a href="https://twitter.com/mohammadaskar2">@mohammadaskar2</a>.  I thoroughly enjoyed it from enumeration to privilege escalation (and even learned something new during privesc).  Let's get started.
             <br><br>
