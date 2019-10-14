@@ -15,5 +15,6 @@
             </div>
         </div>
         <a href="/about-me.php">About Me</a>
+        <a href="/links.php">Links</a>
     </div>';
 ?>
