@@ -11,7 +11,7 @@
             About Me
         </h3>
         <p class="text">
-            I'm on the internet because I'm an internet thug.
+		Under Construction.  I'm on the internet because I'm an internet thug.
         </p>
         <br />
     </div>

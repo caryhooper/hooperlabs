@@ -1,5 +1,5 @@
 <?php echo '<h1>
-        Welcome to Hooper Labs
+        Welcome to Hooper Labs (Under Construction)
     </h1>
     <br />
     <div class="navbar">
