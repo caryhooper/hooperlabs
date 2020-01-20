@@ -7,11 +7,11 @@
 <?php include 'navbar.php';?>
 
     <div class="body-content">
-        <h3>
+        <h2>
             Purpose
-        </h3>
+        </h2>
         <p class="text">
-            Over the last few years, I have learned an incredible amount about information security and computer security, both how to conduct attacks and defend against them. This site serves to keep track of the things I have learned and hopefully help others who are interested in the field.
+            This site contains a collection of computer security resources. 
         </p>
         <br />
     </div>

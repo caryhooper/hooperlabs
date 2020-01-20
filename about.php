@@ -7,13 +7,13 @@
 <?php include 'navbar.php';?>
 
     <div class="body-content">
-        <h3>
+        <h2>
             About Me
-        </h3>
+        </h2>
         <p class="text">
-		Under Construction.  I'm on the internet because I'm an internet thug.
+		Under Construction.  This site is a collection of knowledge.  Feel free to contribute.
         </p>
-        <br />
+        <br>
     </div>
 </body>
 <?php include 'footer.php';?>

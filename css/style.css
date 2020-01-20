@@ -1,7 +1,112 @@
-.navbar {
+/* Class overwrites tag 
+tag
+  .class 
+     #id
+       !important (override any style)
+tag.class -- chaining (AND)
+.class tag -- nested (WITHIN)
+tag, .class {(Both)}
+*/
+
+h1 {
+    font-family: Verdana, sans-serif;
+    font-size: 32px;
+    color: white;
+    padding: 0px 0px 0px 20px;
+
+/*    text-align: left;*/
+    
+}
+
+.header {
+    background-color: #666;
+    height: 70px;
+    width: 90%;
     overflow: hidden;
-    background-color: #333;
-    font-family: Arial, Helvetica, sans-serif;
+    padding: 10%,10%,10%,10%;
+    position: relative;
+    display: inline-block;
+}
+
+
+.navbar{
+    position: relative;
+    height: 62px;
+    width: 90%;
+}
+#titlepic{ /*lightning bolt*/
+    padding: 5px 5px 5px 5px;
+    width: 10%;
+}
+.title{
+    position: static;
+/*    padding: 5px 5px 5px 5px;*/
+}
+
+.center {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+}
+.box{
+    width:100%;
+}
+
+h2 {
+  font-family: "Verdana", sans-serif;
+  font-size: 24px;
+  text-align: center;
+} 
+
+h3 h4 h5 h6{
+  font-family: "Verdana", sans-serif;
+  font-size: 18px;
+} 
+
+.body-content {
+    margin: 5px;
+    line-height: 1.5;
+}
+
+.text {
+    font-size: 15px;
+    font-family: "Verdana", sans-serif;
+
+}
+
+li {
+    text-align: left;
+    padding: 3px;
+    list-style-type: square;
+    font-family: "Verdana", sans-serif;
+}
+
+
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #333;
+    color: #333;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6; 
+    max-width: 100%;
+    word-wrap: break-word;
+    display: block;
+    overflow: auto; /*Scroll bar*/
+    margin-bottom: 10px; /*Distance between box and next text*/
+}
+
+
+
+
+.navbar,button {
+    overflow: hidden;
+    background-color: #666;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
 }
 
 .navbar a {
@@ -71,47 +176,34 @@
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content a, .dropdown-content2 a {
     float: none;
-    color: black;
+    color: #333;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
 }
 
-.dropdown-content2 a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-.dropdown-content a:hover {
+.dropdown-content a:hover, .dropdown-content2 a:hover  {
     background-color: #ddd;
-}
-
-.dropdown-content2 a:hover {
-    background-color: #ddd;
-}
-pre {
-    background: #f4f4f4;
-    border: 1px solid #ddd;
-    border-left: 3px solid #f36d33;
-    color: #666;
-    page-break-inside: avoid;
-    font-family: monospace;
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 1.6em;
-    max-width: 100%;
-    overflow: auto;
-    padding: 1em 1.5em;
-    display: block;
-    word-wrap: break-word;
 }
 
 .show {
     display: block;
 }
+
+.date {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    padding: 5px;
+    text-align: center;
+}
+
+.headerpic {
+/*    padding: 10px 0 10px 10%;*/
+    position: static;
+    text-align: center;
+}
+
+
