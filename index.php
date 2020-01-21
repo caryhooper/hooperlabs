@@ -7,11 +7,11 @@
 <?php include 'navbar.php';?>
 
     <div class="body-content">
-        <h2>
+        <h3>
             Purpose
-        </h2>
+        </h3>
         <p class="text">
-            This site contains a collection of computer security resources. 
+            This site contains a collection of computer security resources.  
         </p>
         <br />
     </div>

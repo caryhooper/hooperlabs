@@ -7,10 +7,12 @@
 <?php include '../navbar.php';?>
 
     <div class="body-content">
-        <h3>
+        <h2>
             W34KN3SS (Weakness) &nbsp;&nbsp;&nbsp;&nbsp;  
-        </h3>
+        </h2>
+
         <img src="/img/pwn.png" alt="Hack the Planet" height="50px" width="50px" align="middle" align="left">
+        <p class="date">2019-06-14</p>
         <p class="text">
             I can't sing enough praises about W34KN3SS by askar <a href="https://twitter.com/mohammadaskar2">@mohammadaskar2</a>.  I thoroughly enjoyed it from enumeration to privilege escalation (and even learned something new during privesc).  Let's get started.
             <br><br>
@@ -196,7 +198,7 @@
             [+]Done
         </pre>
         <p class=text>
-            So contextual clues indicate that some sort of hash is being generated for "hardcoded" login info.  I can only assume this is a hash of credentials for my current user, n30.  I attempted to crack this hash using hashcat, but could not.  There must be another way.  If the program is generating a hash and it is not being ran with higher privileges, then it must be contained within the program. But how can I access it?  I knew I'd need to start debugging the python bytecode.  There's probably a way to do this within python or gdb, however, I preferred to take a look with ltrace before I jumped off the deep end.  According to teh man page, ltrace is a "library call tracer". I learned about it and strace in one of the Over The Wire labs.  I ran ltrace on the program, then piped the output to a file so that it was more easily greppable.  At first, it looked like the output was too long, but on a whim, I grepped for n30.  At the bottom of the output, I found my answer.
+            So contextual clues indicate that some sort of hash is being generated for "hardcoded" login info.  I can only assume this is a hash of credentials for my current user, n30.  I attempted to crack this hash using hashcat, but could not.  There must be another way.  If the program is generating a hash and it is not being ran with higher privileges, then it must be contained within the program. But how can I access it?  I knew I'd need to start debugging the python bytecode.  There's probably a way to do this within python or gdb, however, I preferred to take a look with ltrace before I jumped off the deep end.  According to the man page, ltrace is a "library call tracer". I learned about it and strace in one of the Over The Wire labs.  I ran ltrace on the program, then piped the output to a file so that it was more easily greppable.  At first, it looked like the output was too long, but on a whim, I grepped for n30.  At the bottom of the output, I found my answer.
         </p>
         <pre>
            n30@W34KN3SS:~$ ltrace python code >/dev/null 2> code.ltrace

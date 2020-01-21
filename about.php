@@ -7,11 +7,11 @@
 <?php include 'navbar.php';?>
 
     <div class="body-content">
-        <h2>
+        <h3>
             About Me
-        </h2>
+        </h3>
         <p class="text">
-		Under Construction.  This site is a collection of knowledge.  Feel free to contribute.
+		Under Construction.  This site is a collection of knowledge.  I hope it helps to teach you something. 
         </p>
         <br>
     </div>
