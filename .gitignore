@@ -1,0 +1,4 @@
+#.gitignore file to clean up repo and prevent VS files from being pushed.
+.vs/
+hooperlabs.phpproj
+hooperlabs.sln
