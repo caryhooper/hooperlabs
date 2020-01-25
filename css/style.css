@@ -17,6 +17,11 @@ h1 {
     
 }
 
+img {
+    padding: 15px 15px 15px 15px;
+
+}
+
 .title_pic{
     position: static;
     padding: 5px 5px 5px 5px;
