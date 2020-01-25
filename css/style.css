@@ -18,15 +18,20 @@ h1 {
 }
 
 img {
-    padding: 15px 15px 15px 15px;
     display: block;
-
 }
 
 .title_pic{
     position: static;
-    padding: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px !important;
     width: 150px;
+}
+
+.header_pic{
+}
+
+.body-img {
+    padding: 15px 15px 15px 15px;
 }
 
 .title_box {

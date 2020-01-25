@@ -11,7 +11,7 @@
         Kerberoasting (Under Construction)
     </h2>
     <div class="center">
-        <img class="headerpic" src="https://placekitten.com/g/50/50" alt="Hack the Planet" height="50px" width="50px">
+        <img class="headerpic" src="https://placekitten.com/g/50/50" alt="Hack the Planet" height="50px" width="50px" align="middle" align="left">
     </div>
     <p class="date">2019-10-23</p>
     <h3>The Kerberos Protocol</h3>
