@@ -6,7 +6,7 @@
 <div class="title_box">
     <div class="title_text">
         <h1>
-        Welcome to Hooper Labs
+        Hooper Labs
         </h1>
     </div>
 
