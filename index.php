@@ -17,7 +17,7 @@
     </div>
     <div>
         <img src="./img/cat.jpg" height="100px" width="200px">
-        <p class="caption">Cat Tax</p>
+        <p class="caption">This site uses cats to demonstrate impact.</p>
     </div>
 </body>
 
