@@ -39,4 +39,5 @@
         <a href="/links.php">Links</a>
     </div>
 </div>
+';
 ?>
