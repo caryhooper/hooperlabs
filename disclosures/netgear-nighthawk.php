@@ -39,7 +39,7 @@
             <li>When the page reloads, observe that JavaScript executes on the page.</li>
             <li>Optionally, use a different browser (with a cleared cache) to navigate to the "Diagnostics" page.  When the page loads, JavaScript will also execute, demonstating that the XSS is stored within the page.</li>
         </ol>
-        <img class="body-img" src="/img/netgear1.png" width="50%">
+        <img class="body-img" src="/img/netgear1.PNG" width="50%">
         <h4>Versions:</h4>
         <ul>
             <li>Firmware - V1.02.09</li>
