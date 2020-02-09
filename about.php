@@ -8,10 +8,10 @@
 
     <div class="body-content">
         <h3>
-            About Me
+            About
         </h3>
         <p class="text">
-		Under Construction.  This site is a collection of knowledge.  I hope it helps to teach you something. 
+		This site is a collection of knowledge and constantly under construction.  We hope it helps to teach you something. 
         </p>
         <br>
     </div>
