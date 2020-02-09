@@ -28,6 +28,8 @@ img {
 }
 
 .header_pic{
+    height: 50px;
+    width: 50px;
 }
 
 .body-img {
