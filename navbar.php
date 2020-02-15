@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <a href="/about.php">About Me</a>
+        <a href="/about.php">About</a>
         <a href="/links.php">Links</a>
     </div>
 </div>
