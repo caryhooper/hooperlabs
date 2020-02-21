@@ -15,10 +15,10 @@
 #(other versions may be vulnerable)
 #Given SSH access to a target machine with Wing FTP Server installed, this program:
 #	- SSH in, forges a FTP user account with full permissions (CVE-2020-8635)
-#	- Logs in to HTTP interface and edits /etc/shadow (resulting in CVE-2020-8634)
-#Each step can all be done manually with code execution on target (no SSH)
+#	- Logs in to HTTP interface and then edits /etc/shadow (resulting in CVE-2020-8634)
+#Each step can all be done manually with any kind of code execution on target (no SSH)
 #To setup, start SSH service, then run ./wftpserver.  Wing FTP services will start after domain is created.
-#Writeup: https://www.hooperlabs.xyz/disclosures/cve-2020-8635.php
+#https://www.hooperlabs.xyz/disclosures/cve-2020-8635.php (writeup)
 
 #python3 sploit.py.txt -t 192.168.0.2:2222 -u lowleveluser -p demo --proxy http://127.0.0.1:8080
 
