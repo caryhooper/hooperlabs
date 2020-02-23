@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Exploit Title: Wing FTP Server root privilege escalation (v.6.2.3)
 # Google Dork: intitle:"Wing FTP Server - Web"
-# Shodan - "Server: Wing FTP Server"
 # Date: 04MAR20
 # Exploit Author: Cary Hooper (@nopantrootdance)
 # Vendor Homepage: https://www.wftpserver.com
