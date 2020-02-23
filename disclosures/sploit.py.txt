@@ -7,17 +7,17 @@
 # Software Link: https://www.wftpserver.com/download/wftpserver-linux-64bit.tar.gz
 # Version: v6.2.3
 # Tested on: Ubuntu 18.04, Kali Linux 4, MacOS Catalina, Solaris 11.4 (x86)
-# CVE : CVE-2020-8634 (unsafe permissions set on edited files)
-# CVE : CVE-2020-8635 (unsafe default permissions on Wing FTP Server files)
+# CVE: CVE-2020-8634 (unsafe permissions set on edited files)
+# CVE: CVE-2020-8635 (unsafe default permissions on Wing FTP Server files)
 
-#Discovery/exploit by Cary Hooper (@nopantrootdance)
-#(other versions may be vulnerable)
-#Given SSH access to a target machine with Wing FTP Server installed, this program:
+# Discovery/exploit by Cary Hooper (@nopantrootdance)
+# (other versions may be vulnerable)
+# Given SSH access to a target machine with Wing FTP Server installed, this program:
 #	- SSH in, forges a FTP user account with full permissions (CVE-2020-8635)
 #	- Logs in to HTTP interface and then edits /etc/shadow (resulting in CVE-2020-8634)
-#Each step can all be done manually with any kind of code execution on target (no SSH)
-#To setup, start SSH service, then run ./wftpserver.  Wing FTP services will start after domain is created.
-#https://www.hooperlabs.xyz/disclosures/cve-2020-8635.php (writeup)
+# Each step can all be done manually with any kind of code execution on target (no SSH)
+# To setup, start SSH service, then run ./wftpserver.  Wing FTP services will start after domain is created.
+# https://www.hooperlabs.xyz/disclosures/cve-2020-8635.php (writeup)
 
 #python3 sploit.py.txt -t 192.168.0.2:2222 -u lowleveluser -p demo --proxy http://127.0.0.1:8080
 
