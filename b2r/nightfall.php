@@ -7,10 +7,10 @@
 <?php include '../navbar.php';?>
 
     <div class="body-content">
-        <h3>
+        <h2>
             Nightfall  
-        </h3>
-        <img class="headerpic" src="http://placekitten.com/200/300" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
+        </h2>
+        <img class="headerpic" src="http://placekitten.com/50/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
         <p class="text">
             The box, nightfall, in the sunset series was created by <a href="https://www.vulnhub.com/author/whitecr0wz,630/">@whitecr0wz</a>.  It was relatively easy, giving good experience for a beginner's enumeration strategy.  Unfortunately, there were a ton of dead ends that tested my patience, but I really enjoyed the privilege escalation method, which I think was unintended.  Let's get started.
             <br><br>
