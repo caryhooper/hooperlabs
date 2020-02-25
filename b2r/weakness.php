@@ -8,7 +8,7 @@
 
     <div class="body-content">
         <h2>
-            W34KN3SS (Weakness) &nbsp;&nbsp;&nbsp;&nbsp;  
+            W34KN3SS (Weakness)
         </h2>
 
         <img class="headerpic" src="/img/pwn.png" alt="Hack the Planet" height="50px" width="50px" align="middle" align="left">

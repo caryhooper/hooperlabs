@@ -8,7 +8,7 @@
 
     <div class="body-content">
         <h3>
-            Nightfall&nbsp;&nbsp;&nbsp;&nbsp;  
+            Nightfall  
         </h3>
         <img class="headerpic" src="http://placekitten.com/200/300" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
         <p class="text">
