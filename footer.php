@@ -2,7 +2,7 @@
     <h3>
         Contact Us
     </h3>
-    <p class=text>
+    <p class="text">
         If you have any questions, suggestions, or concerns, please reach out on Twitter (@nopantrootdance).  Feel free to contribute to any of the projects on <a href="https://www.github.com/caryhooper">GitHub</a>.
     </p>
 </footer>';
