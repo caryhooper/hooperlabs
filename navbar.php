@@ -29,10 +29,10 @@
                 Active Directory Attacks
             </button>
             <div id="menuDropdown2" class="dropdown-content">
-                <a href="/ad/kerberoast.php">Kerberoast</a>
-                <a href="#">DC Sync</a>
-                <a href="#">NTDS.dit Attacks</a>
-                <a href="#">Unconstrained Delegation</a>
+                <a href="/ad/kerberoast.php">Kerberoast (under construction)</a>
+                <a href="#">DC Sync (todo)</a>
+                <a href="#">NTDS.dit Attacks (todo)</a>
+                <a href="#">Unconstrained Delegation (todo)</a>
             </div>
         </div>
 
