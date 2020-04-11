@@ -21,7 +21,7 @@
                 <a href="/b2r/nightfall.php">Nightfall</a>
                 <a href="/b2r/weakness.php">Weakness</a>
                 <a href="/b2r/stapler1.php">Stapler 1</a>
-                <a href="/b2r/mytomcathost.php">Stapler 1</a>
+                <a href="/b2r/mytomcathost.php">My Tomcat Host</a>
             </div>
         </div>
 
