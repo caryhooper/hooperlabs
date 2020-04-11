@@ -12,7 +12,7 @@
         </h2>
         <img class="headerpic" src="http://placekitten.com/100/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
         <p class="text">
-            This VM was created by <a href="https://twitter.com/akankshavermasv">@g0tmi1k</a>. I saw it on Vulnhub and was able to get through it fairly quickly.  It helped that I was familiar with the initial exploitation vector.  The VM came packaged configured for 4GB, but I dropped it down to 2GB without significant performance issues.  The VM can be downloaded:<a href="https://www.vulnhub.com/entry/my-tomcat-host-1,457/">here</a>.
+            This VM was created by <a href="https://twitter.com/akankshavermasv">Akanksha Sachin Verma</a>. I saw it on Vulnhub and was able to get through it fairly quickly.  It helped that I was familiar with the initial exploitation vector.  The VM came packaged configured for 4GB, but I dropped it down to 2GB without significant performance issues.  The VM can be downloaded:<a href="https://www.vulnhub.com/entry/my-tomcat-host-1,457/">here</a>.
         </p>
         <p class="text">
             First, I ran my (bash) enumeration script and exacmined the nmap scan.  I've updated this a bit and it has turned out nicely.  Now, it echoes the open ports that are found.  Pretty nice, huh?
