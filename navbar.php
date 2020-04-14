@@ -22,6 +22,7 @@
                 <a href="/b2r/weakness.php">Weakness</a>
                 <a href="/b2r/stapler1.php">Stapler 1</a>
                 <a href="/b2r/mytomcathost.php">My Tomcat Host</a>
+                <a href="/b2r/inclusiveness.php">Inclusiveness</a>
             </div>
         </div>
 

