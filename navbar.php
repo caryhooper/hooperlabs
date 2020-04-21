@@ -25,8 +25,8 @@
                 <a href="/b2r/inclusiveness.php">Inclusiveness</a>
             </div>
         </div>
-
-        <div class="dropdown">
+        <a href="/cheatsheets.php">Cheat Sheets</a>
+        <!--<div class="dropdown">
             <button onclick="showOptions2()" class="dropbtn2">
                 Active Directory Attacks
             </button>
@@ -36,8 +36,7 @@
                 <a href="#">NTDS.dit Attacks (todo)</a>
                 <a href="#">Unconstrained Delegation (todo)</a>
             </div>
-        </div>
-
+        </div>-->
         <a href="/about.php">About</a>
         <a href="/links.php">Links</a>
     </div>
