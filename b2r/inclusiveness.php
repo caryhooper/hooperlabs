@@ -11,6 +11,7 @@
             Inclusiveness
         </h2>
         <img class="headerpic" src="http://placekitten.com/100/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
+        <p class="date">2020-04-15</p>
         <p class="text">
             This VM was created by <a href="https://twitter.com/h4sh5">h4sh5</a> and Richard Lee.  I love the concept!  Turned out this was a beginner/intermediate box forcing the attacker to put two things together to get a shell.  For privilege escalation, I would have liked to see a multi-step path to root (www-data to user to root), but the privesc exploit reminded me of the basics.  I was stuck for a while and didn't root the VM until I broke apart the problem into its components.  The VM can be downloaded:<a href="https://www.vulnhub.com/entry/inclusiveness-1,422/">here</a>.
         </p>
@@ -206,7 +207,7 @@
     }
         </pre>
         <p class="text">
-            Initially, I had difficulty exploiting this bug.  It was a custom SUID binary owned by root! This was clearly the easiest way to escalate privileges.  The program appeared to run the command "whoami", take the output of that command and store it in a buffer (user), then check if the first three bytes of that buffer were "tom".  If so, it spawned a shell within the context of the program.  There appeared to be a couple obvious vulnerabilities.  First off, if a user named tom1 or tomcat were to run this program, it would also be granted root privileges.  I knew that I couldn't just change the output of the "whoami" binary without hooking the functions themselves (would require root privileges anyway). Then, I realized that the program may not even call the system "whoami" binary.  What if we could manipulate it into running our own "whoami" program?  I remember reading a writeup by <a href="https://twitter.com/0xm1rch">Rich Mirch</a>, a local pentester, on his <a href="https://blog.mirch.io/">blog</a>.  I don't remember which article, but it essentially gained elevated privileges by changing the local user's $PATH variable to trick the service into executing arbitrary code.  I decided to create my own "whoami" binary that always returned "tom".  I created the binary (also named whoami), changed my $PATH variable to first search in the /tmp/ directory for binaries, then executed the SUID rootshell to gain root privileges. 
+            Initially, I had difficulty exploiting this bug.  It was a custom SUID binary owned by root! This was clearly the easiest way to escalate privileges.  The program appeared to run the command "whoami", take the output of that command and store it in a buffer (user), then check if the first three bytes of that buffer were "tom".  If so, it spawned a shell within the context of the program.  There appeared to be a couple obvious vulnerabilities.  First off, if a user named tom1 or tomcat were to run this program, it would also be granted root privileges.  I knew that I couldn't just change the output of the "whoami" binary without hooking the functions themselves (would require root privileges anyway). Then, I realized that the program may not even call the system "whoami" binary.  What if we could manipulate it into running our own "whoami" program?  I remember reading a writeup by <a href="https://twitter.com/0xm1rch">Rich Mirch</a>, a local pentester, on his <a href="https://blog.mirch.io/">blog</a>.  I don't remember which article, but it essentially gained elevated privileges by manipulating $PATH to trick the service into executing arbitrary code.  I decided to create my own "whoami" binary that always returned "tom".  I created the binary (also named whoami), changed my $PATH variable to first search in the /tmp/ directory for binaries, then executed the SUID rootshell to gain root privileges. 
         </p>
         <pre>
     www-data@inclusiveness:/tmp$ echo '#include &lt;stdio.h&gt;' &gt; whoami.c
@@ -261,7 +262,7 @@
     inclusiveness
         </pre>
         <p class="text">
-            I really enjoyed rooting inclusiveness!  Looking back, I get the name as its vulnerable to a Local File Inclusion and $PATH tampering.  I especially enjoy rooting machines that require leveraging multiple services or configurations to achieve RCE.  Big thanks to the creators, <a href="https://twitter.com/h4sh5">h4sh5</a> and Richard Lee.  
+            I really enjoyed rooting inclusiveness!  Looking back, I get the name as its vulnerable to a Local File Inclusion and $PATH tampering.  I especially enjoy rooting machines that require leveraging multiple services or configurations to achieve RCE.  The privilege escalation was a nice reminder as well to break apart a problem and think critically about the components.  Big thanks to the creators, <a href="https://twitter.com/h4sh5">h4sh5</a> and Richard Lee.  
         </p>
     </div>
 </body>

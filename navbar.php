@@ -28,13 +28,10 @@
         <a href="/cheatsheets.php">Cheat Sheets</a>
         <!--<div class="dropdown">
             <button onclick="showOptions2()" class="dropbtn2">
-                Active Directory Attacks
+                Mobile
             </button>
             <div id="menuDropdown2" class="dropdown-content">
-                <a href="/ad/kerberoast.php">Kerberoast (under construction)</a>
-                <a href="#">DC Sync (todo)</a>
-                <a href="#">NTDS.dit Attacks (todo)</a>
-                <a href="#">Unconstrained Delegation (todo)</a>
+                <a href="/mobile/uncrackable1.php">OWASP Uncrackable 1</a>
             </div>
         </div>-->
         <a href="/about.php">About</a>

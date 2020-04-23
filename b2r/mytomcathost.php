@@ -11,6 +11,7 @@
             My Tomcat Host
         </h2>
         <img class="headerpic" src="http://placekitten.com/100/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
+        <p class="date">2020-04-11</p>
         <p class="text">
             This VM was created by <a href="https://twitter.com/akankshavermasv">Akanksha Sachin Verma</a>. I saw it on Vulnhub and was able to get through it fairly quickly.  It helped that I was familiar with the initial exploitation vector.  The VM came packaged configured for 4GB, but I dropped it down to 2GB without significant performance issues.  The VM can be downloaded:<a href="https://www.vulnhub.com/entry/my-tomcat-host-1,457/">here</a>.
         </p>
