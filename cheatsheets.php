@@ -8,17 +8,22 @@
 
     <div class="body-content">
 
-
 <?php 
 //Development for presentation of cheat sheets.
 //1. Locate each file in cheatsheet directory.
 //2. Check each line of each .txt file.
-//3. parse string by "----"
-//4. Echo each to the page.
+//3. Parse file
+//4. Print each to the page.
 
-// for i in $(ls); do word=$(echo -n $i | cut -d '.' -f1); echo -n \"$word\",; done
-$whitelist = array("ad","android","asm","bash","bpf","compilingC","csharp","ctf","gdb","hashes","icacls","kalitools","linux-enum","mitm","msf","networking","osint","portscan","powershell","reg","smb","smtp","snmp","sockets","tmux","web","windows-enum");
+//Populate whitelist in PHP.  This is probably safe.
+$files = scandir("cheatsheets");
+$whitelist = (array) null;
+foreach ($files as &$file){
+	$file = explode('.',$file)[0];
+	array_push($whitelist,$file);
+}
 
+//Prints the list of all notes files within cheatsheets directory.
 function printList(){
 	//Look at each file within directory.  Returns an array
 	print("<h2>List of Cheat Sheets</h2>");
@@ -31,41 +36,85 @@ function printList(){
 	foreach ($files as &$file){
 		//Find all files with ".txt" in them.  
 		if (strpos($file,".txt")){
-			print("<li>");
-			print("<a class='cheatsheet' href=\"/");
 			$topic = explode(".",$file)[0];
-			print("cheatsheets.php?topic=");
-			print($topic);
-			print("\">");
+			print("<li>"."<a class='cheatsheet' href='/cheatsheets.php?topic=".$topic."'>");
 			$firstline = fgets(fopen("cheatsheets/".$file,'r'));
-			$firstline_ex = explode("----",$firstline);
-			$title = $firstline_ex[0];
-			print($title);
-			print("</a>");
-			print("</li>");
+			$title = str_replace("####","",$firstline);
+			$title = str_replace("----","",$title);
+			print($title."</a></li>");
 		}
-		print("\n");
 	}
 	print("</ul>");
 }
 
+//Parses through notes file and prints notes in a prettified (subjective) format.
+//Features: checks for title (^####), subtitle (^##), note item (----), multiline note item (----""")
+//, and sublist (----##foo;bar;foobar)
 function printNotes($topic){
-	print("<h2>".$topic."</h2><br /><br />\n");
+	//print("<h2>".$topic."</h2><br /><br />\n");
 	$f = fopen("cheatsheets/".$topic . ".txt",'r');
 	while(! feof($f) ){
-		//ToDo... include handling for multiline.
 
+		//grab next line
 		$nextline = fgets($f);
-		$nextline_ex = explode("----",$nextline);
-		print("<p class=\"heading\">".$nextline_ex[0]);
-		$linelen = strlen($nextline_ex[1]);
-		//print("Line Length: ".$linelen);
-		if ($linelen > 2){
-			if (strpos("\"\"\"",$nextline_ex[1])){
-				print("Multiline detected.");
-			}
-			else{
-				print("<pre>\t".$nextline_ex[1]."</pre></p>\n");
+		
+		//check if line is a title
+		if (substr($nextline,0,4)=="####"){
+			$title = str_replace("####","",$nextline);
+			print("<h2>".$title."</h2>");
+		}
+		//Check to see if line is a subtitle
+		elseif (substr($nextline,0,2)=='##'){
+			$subtitle = str_replace("##","",$nextline);
+			print("<h3>".$subtitle."</h3>");
+		}
+		else{
+			//explode on ---- delimiter
+			$nextline_ex = explode("----",$nextline);
+			//print the heading
+			print("<p class=\"heading\">".$nextline_ex[0]);
+			//check for nonzero content right of the delimiter
+			$content = $nextline_ex[1];
+			if (strlen($content) > 2){
+				//check for multiline content denoted by """
+				//check if line begins with triple quotes
+				if (substr($content,0,3) == "\"\"\""){
+					print("<pre>\t");
+					do {
+						//print the content without """
+						$content = str_replace("\"\"\"", "", $content);
+						print(" ".$content." ");
+						//look at next line
+						$content = fgets($f);
+						//loop stops if the next line ends with """, otherwise, go to next line
+						//Note: it would be better to strip all white space at end.  I'm sure PHP has a function like this.
+					}while (substr($content,-4,-1) != "\"\"\"");
+					//remove """
+					$content = str_replace("\"\"\"", "", $content);
+					print($content."</pre></p>\n");
+				}
+				//Check for multiline / sublist (##)
+				elseif(substr($content,0,2) == "##"){
+					//remove markup
+					$content = str_replace("##","",$content);
+					//ignore escaped semicolons.
+					$content = str_replace("\\;","####",$content);
+					//Create an array of items that were separated by semicolon
+					$content_ex = explode(";", $content);
+					print("<pre><ul>");
+					//loop through each subitem and insert into unordered list
+					foreach($content_ex as $subitem){
+						if (strlen($subitem) > 2){
+							//Replace escaped semicolons and print subitem as list item.
+							$subitem = str_replace("####",";",$subitem);
+							print("<li>".$subitem."</li>");
+						}
+					}
+					print("</ul></pre></p>\n");
+				}
+				else{
+					print("<pre>\t".$content."</pre></p>\n");
+				}
 			}
 		}
 	}
@@ -73,7 +122,7 @@ function printNotes($topic){
 }
 
 //Main program logic.  Checks to see if we should return the table of contents or the cheat sheet.
-//TODO - put reference at bottom, Switch First line + Title thing.  
+//TODO - put references at bottom
 //Clickable list of all keys?
 //Searchable?
 $user_input = $_GET['topic'];
@@ -85,8 +134,8 @@ if (isset($user_input) && !empty($user_input)){
 	}
 	else{
 		//Silent Error
-		//printList();
-		print("<h3><b>Error! Cheat sheet does not exist!</b></h3>");
+		printList();
+		//print("<h3><b>Error! Cheat sheet does not exist!</b></h3>");
 
 	}
 }

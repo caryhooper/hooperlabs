@@ -32,7 +32,7 @@
             Once the emulated android device was turned on, I checked to see if adb recognized the newly-connected device.  I already had adb installed (** and included within the Windows PATH environment variable).  The installation of adb is beyond the scope of this writeup.  We can view all of the devices connected to the android debugging bridge by issuing the following command.
         </p>
         <pre>
-    PS C:\Users\Cary\.android\Frida-examples\owasp.mstg.uncrackable1> adb devices                                                    
+    PS C:\Users\Cary\.android\frida-examples\owasp.mstg.uncrackable1> adb devices                                                    
     List of devices attached
     192.168.0.165:5555      device
     192.168.7.101:5555      device
@@ -41,29 +41,29 @@
             This is quite important because since two devices are recognized, we'll have to specify which of the two we are interfacing with.  Quickly, we can test this out by dropping a shell on the device.  Interestingly, we may see that we're already root.  One of the benefits of running emulated Android operating systems is that we don't have to root these devices manually.  I may cover rooting devices in another post.
         </p>
         <pre>
-    PS C:\Users\Cary\.android\Frida-examples\owasp.mstg.uncrackable1> adb -s 192.168.0.165:5555 shell                                
+    PS C:\Users\Cary\.android\frida-examples\owasp.mstg.uncrackable1> adb -s 192.168.0.165:5555 shell                                
     vbox86p:/ # whoami
     root
     vbox86p:/ # id
     uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc),3011(uhid) context=u:r:su:s0
         </pre>
         <p class="text">
-            Great!  Next, we'll have to run Frida-server on the target android device in order to dynamically interface with it at runtime.  Frida-server can be downloaded from the Frida <a href="https://github.com/Frida/Frida/releases">GitHub releases</a> page.  It's quite important to match the target architecture.  In our case, "uname -m" reveals a i686 processor, which is x86 or 32bit.  Thus, I downloaded "Frida-server-12.8.20-android-x86.xz", used 7zip to unpack the XZ archive, and renamed the binary to Frida-server.  Then, I uploaded the file to the android device and ran it as a background process. 
+            Great!  Next, we'll have to run frida-server on the target android device in order to dynamically interface with it at runtime.  frida-server can be downloaded from the Frida <a href="https://github.com/frida/frida/releases">GitHub releases</a> page.  It's quite important to match the target architecture.  In our case, "uname -m" reveals a i686 processor, which is x86 or 32bit.  Thus, I downloaded "frida-server-12.8.20-android-x86.xz", used 7zip to unpack the XZ archive, and renamed the binary to frida-server.  Then, I uploaded the file to the android device and ran it as a background process. 
         </p>
         <pre>
-    PS C:\Users\Cary\.android\Frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 push .\Frida-server-12.8.20-android-x86 /data/local/tmp/Frida-server                                                                                                        
-    .\Frida-server-12.8.20-android-x86: 1 file pushed. 48.8 MB/s (26114852 bytes in 0.511s)
-    PS C:\Users\Cary\.android\Frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 shell "chmod +x /data/local/tmp/Frida-server"    
-    PS C:\Users\Cary\.android\Frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 shell "/data/local/tmp/Frida-server &"
+    PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 push .\frida-server-12.8.20-android-x86 /data/local/tmp/frida-server                                                                                                        
+    .\frida-server-12.8.20-android-x86: 1 file pushed. 48.8 MB/s (26114852 bytes in 0.511s)
+    PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 shell "chmod +x /data/local/tmp/frida-server"    
+    PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 shell "/data/local/tmp/frida-server &"
     **Note: this command hung and I needed to press "CTL+C", but the command still ran in the background.
-    PS C:\Users\Cary\.android\Frida-server-12.8.20-android-x86> Frida-ps -D 192.168.0.165:5555  |sls Frida                           
-    2346  Frida-server
+    PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> Frida-ps -D 192.168.0.165:5555  |sls Frida                           
+    2346  frida-server
         </pre>
         <p class="text">
-            The last command, "Frida-ps", is a command-line tool for listing processes.  In order for this to work, you'll need the python Frida-tools package installed on your system.  You can install it with the command: "python -m pip install Frida-tools".  
+            The last command, "Frida-ps", is a command-line tool for listing processes.  In order for this to work, you'll need the python frida-tools package installed on your system.  You can install it with the command: "python -m pip install frida-tools".  
         </p>
         <p class="text">
-            That's it for the setup!  If you've made it this far, we're ready to start reverse engineering/hacking the app. In conclusion, we installed Genymotion emulator, downloaded/booted an Android system image, interfaced with that emulated device with adb, and ran Frida-server on the target device for use in dynamic analysis.
+            That's it for the setup!  If you've made it this far, we're ready to start reverse engineering/hacking the app. In conclusion, we installed Genymotion emulator, downloaded/booted an Android system image, interfaced with that emulated device with adb, and ran frida-server on the target device for use in dynamic analysis.
         </p>
         <h4>
             Static Analysis of Uncrackable 1
@@ -135,7 +135,7 @@
         Dynamic Analysis (with Frida)
         </h4>
         <p class="text">
-            In order to change these applications functions' input and output, we will use the Frida API.  There are other ways of integrating with the Frida API running on the server (emulated android device), but for the moment, I prefer the Python integration with the python-Frida package.  Creating this Python script is also out of scope for this write-up, but you can find it <a href="https://github.com/caryhooper/Frida-examples/blob/master/infosecadventures.Fridademo/Fridademo_Frida.py">on GitHub</a>.  
+            In order to change these applications functions' input and output, we will use the Frida API.  There are other ways of integrating with the Frida API running on the server (emulated android device), but for the moment, I prefer the Python integration with the python-Frida package.  Creating this Python script is also out of scope for this write-up, but you can find it <a href="https://github.com/caryhooper/frida-examples/blob/master/infosecadventures.fridademo/fridademo_frida.py">on GitHub</a>.  
         </p>
         <p class="text">
             If you're up-to-date with Python3, you shouldn't have any trouble running the script.  All the script really does is find/attach to the Android device, determine if the process is running, attach to the process, then load the JavaScript to interface with Frida.  I hope to continually add/update this script to make it easier to invoke/change.  I think of it as a wrapper to the Frida API.  Eventually, I hope it will help keep track of more complicated apps.  Let's take a look at the JavaScript file.  In the following script, we attach to (use) a Java class and hook a function.  Since we're attempting to bypass the root detection, we'll start with one of the three functions located in the "sg.vantagepoint.a.c" class.
@@ -157,13 +157,13 @@
             The code above performs an action on the current session via the Frida API.  Those of you familiar with JavaScript will recognize "console.log" as a substitute for Python's "print" or bash's "echo".  This will just echo a value to the screen.  Next, we define the class "c.class" by passing the full class reference to "Java.use", then saving it into a variable.  Last, we call the "implementation" method on the function "a", which will execute a defined function when the original function is called at runtime.  Running this Python Frida script, we receive the following output. 
         </p>
         <pre>
-    PS C:\Users\Cary\.android\Frida-examples\owasp.mstg.uncrackable1> python .\uncrackable1_Frida.py C:\Temp\test.js                 
+    PS C:\Users\Cary\.android\frida-examples\owasp.mstg.uncrackable1> python .\uncrackable1_frida.py C:\Temp\test.js                 
     [ * ] Attaching to current process.
     [ * ] No process detected.  Spawning process.
     [ * ] Running Frida Demo App
     [ * ] Starting implementation override...
     [ + ] Root detection #1 was hooked!
-    Message: {'type': 'error', 'description': 'Error: Implementation for a expected return value compatible with boolean', 'stack': 'Error: Implementation for a expected return value compatible with boolean\n    at we (Frida/node_modules/Frida-java-bridge/lib/class-factory.js:599)\n    at Frida/node_modules/Frida-java-bridge/lib/class-factory.js:581', 'fileName': 'Frida/node_modules/Frida-java-bridge/lib/class-factory.js', 'lineNumber': 599, 'columnNumber': 1}
+    Message: {'type': 'error', 'description': 'Error: Implementation for a expected return value compatible with boolean', 'stack': 'Error: Implementation for a expected return value compatible with boolean\n    at we (frida/node_modules/frida-java-bridge/lib/class-factory.js:599)\n    at frida/node_modules/frida-java-bridge/lib/class-factory.js:581', 'fileName': 'frida/node_modules/frida-java-bridge/lib/class-factory.js', 'lineNumber': 599, 'columnNumber': 1}
     Payload: None
         </pre>
         <p class="text">
@@ -206,7 +206,7 @@
     }
         </pre>
         <p class="text">
-            Now, when we run the program again (python uncrackable1-Frida.py uncrackable1-rootBypass.js), the "Root Detected!" popup no longer appears and we gained access to additional functionality within the application.  Additionally, three console.log statements printed to the terminal confirmed that all three root detection functions were hooked and bypassed.  Awesome!  Give yourself a pat on the back.  Do a dance.  Have a drink.  Then let's prepare to go deeper. 
+            Now, when we run the program again (python uncrackable1-frida.py uncrackable1-rootBypass.js), the "Root Detected!" popup no longer appears and we gained access to additional functionality within the application.  Additionally, three console.log statements printed to the terminal confirmed that all three root detection functions were hooked and bypassed.  Awesome!  Give yourself a pat on the back.  Do a dance.  Have a drink.  Then let's prepare to go deeper. 
         </p>
         <h4>
             Finding the Secret Key
@@ -310,7 +310,7 @@
             Using Frida, I prepared the two inputs into the decrypt function as input1 and input2.  One thing that surprised me is that I couldn't just use JavaScript's atob() or btoa() base64-handling functions.  Using those resulted in an error. Instead, for each function I needed to import a class with "Java.use".  This way, I used the Android Base64 utility within the Frida script. Later, I needed to import Java's string class "java.lang.String" in order to convert the decrypted byte array to an actual string.  After running the program, the secret word was displayed to the terminal.  
         </p>
         <pre>
-    PS C:\Users\Cary\.android\Frida-examples\owasp.mstg.uncrackable1> python .\uncrackable1-Frida.py .\uncrackable1-decryptSecret.js [ * ] Attaching to current process.
+    PS C:\Users\Cary\.android\frida-examples\owasp.mstg.uncrackable1> python .\uncrackable1-frida.py .\uncrackable1-decryptSecret.js [ * ] Attaching to current process.
     [ * ] No process detected.  Spawning process.
     [ * ] Running Frida Demo App
     [ * ] Starting implementation override...
@@ -323,7 +323,7 @@
             I find it interesting that the "secret" was displayed before the root detection was bypassed.  This is because we weren't overriding the implementation of any application functions at all. We weren't waiting for these functions to be called at runtime.  Instead, we were calling these functions directly.  Therefore, as soon as the application was loaded, the functions ran.  Though kind of a pain, I found this incredibly powerful and can't wait to explore this Frida API more.  
         </p>
         <p class="text">
-            In conclusion, we combined both static and dynamic analysis of the Android Uncrackable 1 application to bypass security function and discover secrets.  First, we prepared the environment including an emulated Android device running Frida-server.  Next, we decompiled and analyzed the APK source code (Java).  Last, we interfaced with the Frida API using Python and JavaScript to hook/bypass security functions and invoke arbitrary functions within the application at runtime.  I'm looking forward to writing more about android hacking with Frida!
+            In conclusion, we combined both static and dynamic analysis of the Android Uncrackable 1 application to bypass security function and discover secrets.  First, we prepared the environment including an emulated Android device running frida-server.  Next, we decompiled and analyzed the APK source code (Java).  Last, we interfaced with the Frida API using Python and JavaScript to hook/bypass security functions and invoke arbitrary functions within the application at runtime.  I'm looking forward to writing more about android hacking with Frida!
         </p>
         <br>
     </div>
