@@ -26,14 +26,14 @@
             </div>
         </div>
         <a href="/cheatsheets.php">Cheat Sheets</a>
-        <!--<div class="dropdown">
+        <div class="dropdown">
             <button onclick="showOptions2()" class="dropbtn2">
                 Mobile
             </button>
             <div id="menuDropdown2" class="dropdown-content">
                 <a href="/mobile/uncrackable1.php">OWASP Uncrackable 1</a>
             </div>
-        </div>-->
+        </div>
         <a href="/about.php">About</a>
         <a href="/links.php">Links</a>
     </div>
