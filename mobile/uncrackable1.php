@@ -11,16 +11,16 @@
             OWASP Uncrackable 1
         </h2>
         <h3 class="subtitle">
-            or Android Hacking with Frida for dummies
+            or Android Hacking with frida for dummies
         </h3>
 
         <img class="headerpic" src="/img/pwn.png" alt="Hack the Planet" height="50px" width="50px">
         <p class="date">2020-04-22</p>
         <p class="text">
-            The other day, I started to get serious about using Frida to hack mobile applications.  There is a ton to learn and, at times, mobile hacking can be a bit daunting even when you have experience pentesting web applications.  Mobile is a different beast altogether.  I'm talking about a unique threat model, many more skills/techniques to learn, and on top of it all still web application hacking techniques which may be relevant. A friend of mine, <a href="https://twitter.com/gcovs">gcovs</a>, challenged me to up my mobile game and motivated me to finally dive into Frida. 
+            The other day, I started to get serious about using frida to hack mobile applications.  There is a ton to learn and, at times, mobile hacking can be a bit daunting even when you have experience pentesting web applications.  Mobile is a different beast altogether.  I'm talking about a unique threat model, many more skills/techniques to learn, and on top of it all still web application hacking techniques which may be relevant. A friend of mine, <a href="https://twitter.com/gcovs">gcovs</a>, challenged me to up my mobile game and motivated me to finally dive into frida. 
         </p>
         <p class="text">
-            Gcovs recommended the OWASP "Crack-Me" Android applications (found <a href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes">here</a>).  I'm looking forward to solving all three, but this writeup will outline the methods and analysis for solving just the first one.  I found two solutions to the first uncrackable application (Uncrackable 1): one through static analysis and one through dynamic analysis (with Frida).  I'll explain them both below as best as I understand.  
+            Gcovs recommended the OWASP "Crack-Me" Android applications (found <a href="https://github.com/OWASP/owasp-mstg/tree/master/Crackmes">here</a>).  I'm looking forward to solving all three, but this writeup will outline the methods and analysis for solving just the first one.  I found two solutions to the first uncrackable application (Uncrackable 1): one through static analysis and one through dynamic analysis (with frida).  I'll explain them both below as best as I understand.  
         </p>
         <h4>
             Setup
@@ -48,7 +48,7 @@
     uid=0(root) gid=0(root) groups=0(root),1004(input),1007(log),1011(adb),1015(sdcard_rw),1028(sdcard_r),3001(net_bt_admin),3002(net_bt),3003(inet),3006(net_bw_stats),3009(readproc),3011(uhid) context=u:r:su:s0
         </pre>
         <p class="text">
-            Great!  Next, we'll have to run frida-server on the target android device in order to dynamically interface with it at runtime.  frida-server can be downloaded from the Frida <a href="https://github.com/frida/frida/releases">GitHub releases</a> page.  It's quite important to match the target architecture.  In our case, "uname -m" reveals a i686 processor, which is x86 or 32bit.  Thus, I downloaded "frida-server-12.8.20-android-x86.xz", used 7zip to unpack the XZ archive, and renamed the binary to frida-server.  Then, I uploaded the file to the android device and ran it as a background process. 
+            Great!  Next, we'll have to run frida-server on the target android device in order to dynamically interface with it at runtime.  frida-server can be downloaded from the frida <a href="https://github.com/frida/frida/releases">GitHub releases</a> page.  It's quite important to match the target architecture.  In our case, "uname -m" reveals a i686 processor, which is x86 or 32bit.  Thus, I downloaded "frida-server-12.8.20-android-x86.xz", used 7zip to unpack the XZ archive, and renamed the binary to frida-server.  Then, I uploaded the file to the android device and ran it as a background process. 
         </p>
         <pre>
     PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 push .\frida-server-12.8.20-android-x86 /data/local/tmp/frida-server                                                                                                        
@@ -56,11 +56,11 @@
     PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 shell "chmod +x /data/local/tmp/frida-server"    
     PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> adb -s 192.168.0.165:5555 shell "/data/local/tmp/frida-server &"
     **Note: this command hung and I needed to press "CTL+C", but the command still ran in the background.
-    PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> Frida-ps -D 192.168.0.165:5555  |sls Frida                           
+    PS C:\Users\Cary\.android\frida-server-12.8.20-android-x86> frida-ps -D 192.168.0.165:5555  |sls frida                           
     2346  frida-server
         </pre>
         <p class="text">
-            The last command, "Frida-ps", is a command-line tool for listing processes.  In order for this to work, you'll need the python frida-tools package installed on your system.  You can install it with the command: "python -m pip install frida-tools".  
+            The last command, "frida-ps", is a command-line tool for listing processes.  In order for this to work, you'll need the python frida-tools package installed on your system.  You can install it with the command: "python -m pip install frida-tools".  
         </p>
         <p class="text">
             That's it for the setup!  If you've made it this far, we're ready to start reverse engineering/hacking the app. In conclusion, we installed Genymotion emulator, downloaded/booted an Android system image, interfaced with that emulated device with adb, and ran frida-server on the target device for use in dynamic analysis.
@@ -129,16 +129,16 @@
             Two of the three functions were pretty clear in what checks they were performing.  Function c.a calls "System.getenv('PATH')", which presumably reads the PATH environment variable.  It splits that variable on ":" and for each element, checks to see if the "su" binary exists at that path.  Function c.c, on the other hand contains an array of strings with common artifacts of rooted systems.  Then, one by one, checks to see if any of those files exist on the system.  I was a little confused by the c.b function and needed to do a little bit of research.  Googling "Build.TAGS root detection", I landed at a <a href="https://stackoverflow.com/questions/18808705/android-root-detection-using-build-tags">StackOverflow</a> page, which revealed that test-keys and release-keys have to do with how the kernel is signed when it is compiled.  A kernel signed with "test-keys" means it was signed with a custom key generated by a third-party developer.  A kernel signed with Release-Keys is generally a sign that the kernel is more secure.  
         </p>
         <p class="text">
-            Awesome!  We've found the root detection methods and learned some things about ways to check if a device is rooted or not.  Now that we know which functions to manipulate, we will do so through dynamic manipulation.  It is quite possible to change the source code to remove these functions or have them always return the boolean "false".  We would then have to recompile or re-sign the application, and then reinstall, but it may be easier to use Frida to manipulate the return value of these functions on-the-fly.
+            Awesome!  We've found the root detection methods and learned some things about ways to check if a device is rooted or not.  Now that we know which functions to manipulate, we will do so through dynamic manipulation.  It is quite possible to change the source code to remove these functions or have them always return the boolean "false".  We would then have to recompile or re-sign the application, and then reinstall, but it may be easier to use frida to manipulate the return value of these functions on-the-fly.
         </p>
         <h4>
-        Dynamic Analysis (with Frida)
+        Dynamic Analysis (with frida)
         </h4>
         <p class="text">
-            In order to change these applications functions' input and output, we will use the Frida API.  There are other ways of integrating with the Frida API running on the server (emulated android device), but for the moment, I prefer the Python integration with the python-Frida package.  Creating this Python script is also out of scope for this write-up, but you can find it <a href="https://github.com/caryhooper/frida-examples/blob/master/infosecadventures.fridademo/fridademo_frida.py">on GitHub</a>.  
+            In order to change these applications functions' input and output, we will use the frida API.  There are other ways of integrating with the frida API running on the server (emulated android device), but for the moment, I prefer the Python integration with the python-frida package.  Creating this Python script is also out of scope for this write-up, but you can find it <a href="https://github.com/caryhooper/frida-examples/blob/master/infosecadventures.fridademo/fridademo_frida.py">on GitHub</a>.  
         </p>
         <p class="text">
-            If you're up-to-date with Python3, you shouldn't have any trouble running the script.  All the script really does is find/attach to the Android device, determine if the process is running, attach to the process, then load the JavaScript to interface with Frida.  I hope to continually add/update this script to make it easier to invoke/change.  I think of it as a wrapper to the Frida API.  Eventually, I hope it will help keep track of more complicated apps.  Let's take a look at the JavaScript file.  In the following script, we attach to (use) a Java class and hook a function.  Since we're attempting to bypass the root detection, we'll start with one of the three functions located in the "sg.vantagepoint.a.c" class.
+            If you're up-to-date with Python3, you shouldn't have any trouble running the script.  All the script really does is find/attach to the Android device, determine if the process is running, attach to the process, then load the JavaScript to interface with frida.  I hope to continually add/update this script to make it easier to invoke/change.  I think of it as a wrapper to the frida API.  Eventually, I hope it will help keep track of more complicated apps.  Let's take a look at the JavaScript file.  In the following script, we attach to (use) a Java class and hook a function.  Since we're attempting to bypass the root detection, we'll start with one of the three functions located in the "sg.vantagepoint.a.c" class.
         </p>
         <pre>
     Java.perform(function () {
@@ -154,13 +154,13 @@
     });
         </pre>
         <p class="text">
-            The code above performs an action on the current session via the Frida API.  Those of you familiar with JavaScript will recognize "console.log" as a substitute for Python's "print" or bash's "echo".  This will just echo a value to the screen.  Next, we define the class "c.class" by passing the full class reference to "Java.use", then saving it into a variable.  Last, we call the "implementation" method on the function "a", which will execute a defined function when the original function is called at runtime.  Running this Python Frida script, we receive the following output. 
+            The code above performs an action on the current session via the frida API.  Those of you familiar with JavaScript will recognize "console.log" as a substitute for Python's "print" or bash's "echo".  This will just echo a value to the screen.  Next, we define the class "c.class" by passing the full class reference to "Java.use", then saving it into a variable.  Last, we call the "implementation" method on the function "a", which will execute a defined function when the original function is called at runtime.  Running this Python frida script, we receive the following output. 
         </p>
         <pre>
     PS C:\Users\Cary\.android\frida-examples\owasp.mstg.uncrackable1> python .\uncrackable1_frida.py C:\Temp\test.js                 
     [ * ] Attaching to current process.
     [ * ] No process detected.  Spawning process.
-    [ * ] Running Frida Demo App
+    [ * ] Running frida Demo App
     [ * ] Starting implementation override...
     [ + ] Root detection #1 was hooked!
     Message: {'type': 'error', 'description': 'Error: Implementation for a expected return value compatible with boolean', 'stack': 'Error: Implementation for a expected return value compatible with boolean\n    at we (frida/node_modules/frida-java-bridge/lib/class-factory.js:599)\n    at frida/node_modules/frida-java-bridge/lib/class-factory.js:581', 'fileName': 'frida/node_modules/frida-java-bridge/lib/class-factory.js', 'lineNumber': 599, 'columnNumber': 1}
@@ -259,7 +259,7 @@
             </ul>
         </p>
         <p class="text">
-            Not only do we have what appears to be ciphertext, but we also have the encryption method and key.  At this point, I can write a quick decryption routine in Python to reveal the plaintext.  This decryption program is located <a href="https://github.com/caryhooper/scripts/blob/master/aesdecrypt.py">on GitHub, here</a>.  While this certainly works, its definitely not the Frida way of doing things.  I looked closely at the return value for function a.a, which checked to see if var0 (the user input) was equal to var1.  Earlier in the function, var1 was populated in the "try" statement.  In order to perform the decryption function, we'd need to invoke a.b to prepare the key and sg.vantagepoint.a.a.a to perform the actual decrypt function.  Luckily, we can do this in Frida!
+            Not only do we have what appears to be ciphertext, but we also have the encryption method and key.  At this point, I can write a quick decryption routine in Python to reveal the plaintext.  This decryption program is located <a href="https://github.com/caryhooper/scripts/blob/master/aesdecrypt.py">on GitHub, here</a>.  While this certainly works, its definitely not the frida way of doing things.  I looked closely at the return value for function a.a, which checked to see if var0 (the user input) was equal to var1.  Earlier in the function, var1 was populated in the "try" statement.  In order to perform the decryption function, we'd need to invoke a.b to prepare the key and sg.vantagepoint.a.a.a to perform the actual decrypt function.  Luckily, we can do this in frida!
         </p>
         <pre>
     Java.perform(function () {
@@ -307,12 +307,12 @@
     });
         </pre>
         <p class="text">
-            Using Frida, I prepared the two inputs into the decrypt function as input1 and input2.  One thing that surprised me is that I couldn't just use JavaScript's atob() or btoa() base64-handling functions.  Using those resulted in an error. Instead, for each function I needed to import a class with "Java.use".  This way, I used the Android Base64 utility within the Frida script. Later, I needed to import Java's string class "java.lang.String" in order to convert the decrypted byte array to an actual string.  After running the program, the secret word was displayed to the terminal.  
+            Using frida, I prepared the two inputs into the decrypt function as input1 and input2.  One thing that surprised me is that I couldn't just use JavaScript's atob() or btoa() base64-handling functions.  Using those resulted in an error. Instead, for each function I needed to import a class with "Java.use".  This way, I used the Android Base64 utility within the frida script. Later, I needed to import Java's string class "java.lang.String" in order to convert the decrypted byte array to an actual string.  After running the program, the secret word was displayed to the terminal.  
         </p>
         <pre>
     PS C:\Users\Cary\.android\frida-examples\owasp.mstg.uncrackable1> python .\uncrackable1-frida.py .\uncrackable1-decryptSecret.js [ * ] Attaching to current process.
     [ * ] No process detected.  Spawning process.
-    [ * ] Running Frida Demo App
+    [ * ] Running frida Demo App
     [ * ] Starting implementation override...
     Secret: I want to believe
     [ + ] Root detection #1 ($PATH check) successfully bypassed!
@@ -320,10 +320,10 @@
     [ + ] Root detection #3 (File check) successfully bypassed!
         </pre>
         <p class="text">
-            I find it interesting that the "secret" was displayed before the root detection was bypassed.  This is because we weren't overriding the implementation of any application functions at all. We weren't waiting for these functions to be called at runtime.  Instead, we were calling these functions directly.  Therefore, as soon as the application was loaded, the functions ran.  Though kind of a pain, I found this incredibly powerful and can't wait to explore this Frida API more.  
+            I find it interesting that the "secret" was displayed before the root detection was bypassed.  This is because we weren't overriding the implementation of any application functions at all. We weren't waiting for these functions to be called at runtime.  Instead, we were calling these functions directly.  Therefore, as soon as the application was loaded, the functions ran.  Though kind of a pain, I found this incredibly powerful and can't wait to explore this frida API more.  
         </p>
         <p class="text">
-            In conclusion, we combined both static and dynamic analysis of the Android Uncrackable 1 application to bypass security function and discover secrets.  First, we prepared the environment including an emulated Android device running frida-server.  Next, we decompiled and analyzed the APK source code (Java).  Last, we interfaced with the Frida API using Python and JavaScript to hook/bypass security functions and invoke arbitrary functions within the application at runtime.  I'm looking forward to writing more about android hacking with Frida!
+            In conclusion, we combined both static and dynamic analysis of the Android Uncrackable 1 application to bypass security function and discover secrets.  First, we prepared the environment including an emulated Android device running frida-server.  Next, we decompiled and analyzed the APK source code (Java).  Last, we interfaced with the frida API using Python and JavaScript to hook/bypass security functions and invoke arbitrary functions within the application at runtime.  I'm looking forward to writing more about android hacking with frida!
         </p>
         <br>
     </div>
