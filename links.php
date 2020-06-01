@@ -21,6 +21,7 @@
                 "Kellgon: The Hacker Tutorial (@secure_perry)" => "https://kellgon.com/",
                 "Rainier Cyber (bsod_steve @diodepack)" => "https://www.rainiercyber.com/",
                 "Step by step guide to Linux Kernel Exploitation (@LexfoSecurite)" => "https://blog.lexfo.fr/cve-2017-11176-linux-kernel-exploitation-part1.html",
+                "Socket Reconstruction Technique for BOF" => "https://barriersec.com/2019/05/exploiting-vulnserver-trun-command-using-socket-reconstruction-technique/"
             ];
             foreach ($links as $desc => $link) {
                 echo "<li><a href=\"{$link}\">{$desc}</a></li>";
