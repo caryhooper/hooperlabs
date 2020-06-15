@@ -75,7 +75,7 @@
             <li>Observe that the “IBIWF_SES_AUTH_TOKEN” is not sent to the server with the request.</li>
             <li>When viewing the list of administrative users, the victim will notice that a new administrative user ("h00p") was added to the WebFOCUS BI application.</li>
         </ol>
-        <img class="body-img" src="/img/divebook_csrf.png" width="60%">
+        <img class="body-img" src="/img/webfocus_csrf.png" width="60%">
         <p class="text">
            The top left window displays the CSRF (HTML + JavaScript) payload.  The IBIWF_SES_AUTH_TOKEN was not included in the request.  This page was opened by the browser on the bottom left.  The browser made a request to the vulnerable WebFOCUS BI application, which returned a “SUCCESS” response.  Within the browser on the right, a new administrative user “h00p” is shown as part of the “Administrators” group.
         </p>
