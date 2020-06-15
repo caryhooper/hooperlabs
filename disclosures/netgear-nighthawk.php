@@ -1,10 +1,10 @@
 <html>
 
-<?php include '../header.php';?>
+<?php include '/header.php';?>
 
 <body>
 
-<?php include '../navbar.php';?>
+<?php include '/navbar.php';?>
 
 <div class="body-content">
     <h2>
@@ -53,6 +53,6 @@
 
 </body>
 
-<?php include '../footer.php';?>
+<?php include '/footer.php';?>
 
 </html>

@@ -1,10 +1,10 @@
 <html>
 
-<?php include './header.php';?>
+<?php include '/header.php';?>
 
 <body>
 
-<?php include './navbar.php';?>
+<?php include '/navbar.php';?>
 
     <div class="body-content">
 
@@ -37,7 +37,7 @@ function printList(){
 		//Find all files with ".txt" in them.  
 		if (strpos($file,".txt")){
 			$topic = explode(".",$file)[0];
-			print("<li>"."<a class='cheatsheet' href='./cheatsheets.php?topic=".$topic."'>");
+			print("<li>"."<a class='cheatsheet' href='/cheatsheets.php?topic=".$topic."'>");
 			$firstline = fgets(fopen("cheatsheets/".$file,'r'));
 			$title = str_replace("####","",$firstline);
 			$title = str_replace("----","",$title);
@@ -147,5 +147,5 @@ else{
     </div>
 </body>
 
-<?php include './footer.php';?>
+<?php include '/footer.php';?>
 </html>

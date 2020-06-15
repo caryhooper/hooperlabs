@@ -1,10 +1,10 @@
 <html>
 
-<?php include '../header.php';?>
+<?php include '/header.php';?>
 
 <body>
 
-<?php include '../navbar.php';?>
+<?php include '/navbar.php';?>
 
     <div class="body-content">
         <h2>
@@ -361,5 +361,5 @@ b6b545dc11b7a270f4bad23432190c75162c4a2b
 
 
 </body>
-<?php include '../footer.php';?>
+<?php include '/footer.php';?>
 </html>

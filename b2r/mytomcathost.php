@@ -1,10 +1,10 @@
 <html>
 
-<?php include '../header.php';?>
+<?php include '/header.php';?>
 
 <body>
 
-<?php include '../navbar.php';?>
+<?php include '/navbar.php';?>
 
     <div class="body-content">
         <h2>
@@ -19,7 +19,7 @@
             First, I ran my (bash) enumeration script and examined the nmap scan.  I've updated this a bit and it has turned out nicely.  Now, it echoes the open ports that are found.  Pretty nice, huh?
         </p>
         <pre>
-    root@kali:~/Documents/mytomcathost# ../scripts/enum-automation.sh 192.168.0.123
+    root@kali:~/Documents/mytomcathost# /scripts/enum-automation.sh 192.168.0.123
     Initial Host Enumeration Script
     by Cary Hooper @nopantrootdance
         [*] Beginning nmap scan of target.
@@ -221,5 +221,5 @@
         </p>
     </div>
 </body>
-<?php include '../footer.php';?>
+<?php include '/footer.php';?>
 </html>

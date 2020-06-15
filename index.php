@@ -1,10 +1,10 @@
 <html>
 
-<?php include './header.php';?>
+<?php include '/header.php';?>
 
 <body>
 
-<?php include './navbar.php';?>
+<?php include '/navbar.php';?>
 
     <div class="body-content">
         <h3>
@@ -16,11 +16,11 @@
         <br />
     </div>
     <div>
-        <img src="./img/cat.jpg" height="100px" width="200px">
+        <img src="/img/cat.jpg" height="100px" width="200px">
         <p class="text">This site uses cats to demonstrate impact.</p>
     </div>
 </body>
 
-<?php include './footer.php';?>
+<?php include '/footer.php';?>
 
 </html>
