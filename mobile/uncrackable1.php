@@ -14,7 +14,7 @@
             or Android Hacking with frida for dummies
         </h3>
 
-        <img class="headerpic" src="/img/pwn.png" alt="Hack the Planet" height="50px" width="50px">
+        <img class="headerpic" src="./img/pwn.png" alt="Hack the Planet" height="50px" width="50px">
         <p class="date">2020-04-22</p>
         <p class="text">
             The other day, I started to get serious about using frida to hack mobile applications.  There is a ton to learn and, at times, mobile hacking can be a bit daunting even when you have experience pentesting web applications.  Mobile is a different beast altogether.  I'm talking about a unique threat model, many more skills/techniques to learn, and on top of it all still web application hacking techniques which may be relevant. A friend of mine, <a href="https://twitter.com/gcovs">gcovs</a>, challenged me to up my mobile game and motivated me to finally dive into frida. 

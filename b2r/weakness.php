@@ -11,7 +11,7 @@
             W34KN3SS (Weakness)
         </h2>
 
-        <img class="headerpic" src="/img/pwn.png" alt="Hack the Planet" height="50px" width="50px" align="middle" align="left">
+        <img class="headerpic" src="./img/pwn.png" alt="Hack the Planet" height="50px" width="50px" align="middle" align="left">
         <p class="date">2019-06-14</p>
         <p class="text">
             I can't sing enough praises about W34KN3SS by askar <a href="https://twitter.com/mohammadaskar2">@mohammadaskar2</a>.  I thoroughly enjoyed it from enumeration to privilege escalation (and even learned something new during privesc).  Let's get started.

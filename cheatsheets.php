@@ -1,10 +1,10 @@
 <html>
 
-<?php include 'header.php';?>
+<?php include './header.php';?>
 
 <body>
 
-<?php include 'navbar.php';?>
+<?php include './navbar.php';?>
 
     <div class="body-content">
 
@@ -37,7 +37,7 @@ function printList(){
 		//Find all files with ".txt" in them.  
 		if (strpos($file,".txt")){
 			$topic = explode(".",$file)[0];
-			print("<li>"."<a class='cheatsheet' href='/cheatsheets.php?topic=".$topic."'>");
+			print("<li>"."<a class='cheatsheet' href='./cheatsheets.php?topic=".$topic."'>");
 			$firstline = fgets(fopen("cheatsheets/".$file,'r'));
 			$title = str_replace("####","",$firstline);
 			$title = str_replace("----","",$title);
@@ -59,12 +59,12 @@ function printNotes($topic){
 		$nextline = fgets($f);
 		
 		//check if line is a title
-		if (substr($nextline,0,4)=="####"){
+		if (substr($nextline,0,4)==="####"){
 			$title = str_replace("####","",$nextline);
 			print("<h2>".$title."</h2>");
 		}
 		//Check to see if line is a subtitle
-		elseif (substr($nextline,0,2)=='##'){
+		elseif (substr($nextline,0,2)==='##'){
 			$subtitle = str_replace("##","",$nextline);
 			print("<h3>".$subtitle."</h3>");
 		}
@@ -78,7 +78,7 @@ function printNotes($topic){
 			if (strlen($content) > 2){
 				//check for multiline content denoted by """
 				//check if line begins with triple quotes
-				if (substr($content,0,3) == "\"\"\""){
+				if (substr($content,0,3) === "\"\"\""){
 					print("<pre>\t");
 					do {
 						//print the content without """
@@ -94,7 +94,7 @@ function printNotes($topic){
 					print($content."</pre></p>\n");
 				}
 				//Check for multiline / sublist (##)
-				elseif(substr($content,0,2) == "##"){
+				elseif(substr($content,0,2) === "##"){
 					//remove markup
 					$content = str_replace("##","",$content);
 					//ignore escaped semicolons.
@@ -147,5 +147,5 @@ else{
     </div>
 </body>
 
-<?php include 'footer.php';?>
+<?php include './footer.php';?>
 </html>
