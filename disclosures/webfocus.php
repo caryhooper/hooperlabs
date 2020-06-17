@@ -17,7 +17,7 @@
     <p class="date">2020-06-22</p>
     <h3>Background</h3>
     <p class="text">
-        WebFocus BI 8.0 (SP6) was prone to a multiple vulnerabilities including cross-site scripting, cross-site request forgery, and XXE injection. 
+        WebFocus BI 8.0 (SP6) was prone to a multiple vulnerabilities including cross-site scripting, cross-site request forgery, and XXE injection (CVE-2020-14202, CVE-2020-14203, CVE-2020-14204). 
 
         An attacker could leverage these issues to:
         <ul>
@@ -32,7 +32,7 @@
     <p class="text">
         Vulnerable version: 8.0 (SP6).  
     </p>
-        <h4>Vulnerability - CVE-2020-XXXXX</h4>
+        <h4>Vulnerability - CVE-2020-14202</h4>
         <p class="text">
            WebFOCUS Business Intelligence is prone to a cross-site scripting vulnerability because it fails to sufficiently sanitize user-supplied input.  An attacker may leverage this issue to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site.  This may allow the attacker to steal cookie-based authentication credentials and to launch other attacks.
         </p>
@@ -46,7 +46,7 @@
             Screenshot showing request, website response, and JavaScript execution.  
         </p>
 
-        <h4>Vulnerability - CVE-2020-XXXXX</h4>
+        <h4>Vulnerability - CVE-2020-14203</h4>
         <p class="text">
             WebFOCUS Business Intelligence allows a Cross-Site Request Forgery (CSRF) attack within the /ibi_apps/WFServlet(.ibfs) endpoint.  Leveraging this bug, an attacker may cause a victim user to conduct actions within the application.  For example, an administrative user may be caused to create a malicious administrative user with no password.
         </p>
@@ -80,7 +80,7 @@
            The top left window displays the CSRF (HTML + JavaScript) payload.  The IBIWF_SES_AUTH_TOKEN was not included in the request.  This page was opened by the browser on the bottom left.  The browser made a request to the vulnerable WebFOCUS BI application, which returned a “SUCCESS” response.  Within the browser on the right, a new administrative user “h00p” is shown as part of the “Administrators” group.
         </p>
 
-        <h4>Vulnerability - CVE-2020-XXXXX</h4>
+        <h4>Vulnerability - CVE-2020-14204</h4>
         <p class="text">
             WebFOCUS Business Intelligence administration portal allows remote attackers to read arbitrary local files or forge server-side HTTP requests via a crafted HTTP request to /ibi_apps/WFServlet.cfg because XML external entities injection is possible.  This is related to making changes to the application repository configuration. 
         </p>

@@ -17,7 +17,7 @@
     <p class="date">2020-09-15</p>
     <h3>Background</h3>
     <p class="text">
-        The DiveBook plugin for WordPress was prone to a multiple vulnerabilities including SQL injection, cross-site scripting, and improper authorization. 
+        The DiveBook plugin for WordPress was prone to a multiple vulnerabilities including SQL injection, cross-site scripting, and improper authorization (CVE-2020-14205, CVE-2020-14206, CVE-2020-14207). 
         An attacker could leverage these issues to dump the database including administrative user credentials, to steal cookie-based authentication credentials, or launch other attacks.  Other versions are likely affected, though they were not tested. 
     </p>
     <p class="text">
@@ -26,7 +26,7 @@
     <p class="text">
         Vulnerable version: v.1.1.4.  
     </p>
-        <h4>Vulnerability - CVE-2020-XXXXX</h4>
+        <h4>Vulnerability - CVE-2020-14207</h4>
         <p class="text">
             A SQL injection vulnerability exists within the DiveBook log's filter functionality. Though the plugin escapes some user input (quotes), complete compromise of the application is possible by injecting the "filter_diver" GET parameter. 
         </p>
@@ -42,7 +42,7 @@
             The screenshot above demonstrates the attack and MySQL version returned in the page.
         </p>
 
-        <h4>Vulnerability - CVE-2020-XXXXX</h4>
+        <h4>Vulnerability - CVE-2020-14206</h4>
         <p class="text">
             A reflected cross-site scripting vulnerability exists within the DiveBook log's filter functionality.  Arbitrary URL parameters are reflected into the application's response, rendered by the browser as HTML or JavaScript.  An attacker may abuse this functionality by sending a victim a crafted link containing JavaScript, which will execute within the context of the victim's browser.  The "scrolled" parameter is also vulnerable. 
         </p>
@@ -58,7 +58,7 @@
             The screenshot above demonstrates the attack (request, response, and result).  Observe that a JavaScript "alert" box appears with arbitrary content. This payload may be modified to execute arbitrary JavaScript in the victim's browser.
         </p>
 
-        <h4>Vulnerability - CVE-2020-XXXXX</h4>
+        <h4>Vulnerability - CVE-2020-14205</h4>
         <p class="text">
             An authorization issue is present in the DiveBook "Add New Dive" feature.  An anonymous user may create a crafted HTTP POST request to create a new dive.  
         </p>
