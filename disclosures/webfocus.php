@@ -8,7 +8,7 @@
 
 <div class="body-content">
     <h2>
-        Multiple Vulnerabilities in WebFocus BI (v.8.0 SP6)
+        Multiple Vulnerabilities in WebFOCUS BI (v.8.0 SP6)
     </h2>
     <div class="centre">
         <img class="headrepic" src="https://www.informationbuilders.com/sites/default/files/styles/customer_spotlight/public/2019-07/webfocus_bi_teaser5.jpg" alt="Hack the Planet" height="200px" width="200px" align="middle">
@@ -17,7 +17,7 @@
     <p class="date">2020-06-22</p>
     <h3>Background</h3>
     <p class="text">
-        WebFocus BI 8.0 (SP6) was prone to a multiple vulnerabilities including cross-site scripting (CVE-2020-14202), cross-site request forgery (CVE-2020-14203), and XXE injection (CVE-2020-14204). 
+        WebFOCUS BI 8.0 (SP6) was prone to a multiple vulnerabilities including cross-site scripting (CVE-2020-14202), cross-site request forgery (CVE-2020-14203), and XXE injection (CVE-2020-14204). These vulnerabilities have been patched by the vendor in newer versions of WebFOCUS BI.
 
         An attacker could leverage these issues to:
         <ul>
