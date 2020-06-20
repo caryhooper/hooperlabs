@@ -11,7 +11,7 @@
         Multiple Vulnerabilities in DiveBook WordPress Plugin (v.1.1.4)
     </h2>
     <div class="centre">
-        <img class="headerpic" src="http://pluginsroom.com/assets/img/wordpress-plugins.png" alt="Hack the Planet" height="100px" width="100px" align="middle">
+        <img class="headrepic" src="http://pluginsroom.com/assets/img/wordpress-plugins.png" alt="Hack the Planet" height="100px" width="100px" align="middle">
     </div>
     
     <p class="date">2020-09-15</p>
@@ -84,7 +84,7 @@
         </ol>
         <img class="body-img" src="/img/divebook_SQLi.png" width="60%">
         <p class="text">
-            The screenshot above demonstrates the attack and MySQL version returned in the page.
+            The screenshot above demonstrates the attack and MySQL version returned in the page. A few more crafted queries would result in the password hashes and usernames of all WordPress users for the instance.
         </p>
 
         <h4>Testing Conditions:</h4>
