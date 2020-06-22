@@ -13,8 +13,7 @@
     <div class="centre">
         <img class="headrepic" src="https://www.informationbuilders.com/sites/default/files/styles/customer_spotlight/public/2019-07/webfocus_bi_teaser5.jpg" alt="Hack the Planet" height="200px" width="200px" align="middle">
     </div>
-    
-    <p class="date">2020-06-22</p>
+        <p class="date">2020-06-22</p>
     <h3>Background</h3>
     <p class="text">
         WebFOCUS BI 8.0 (SP6) was prone to a multiple vulnerabilities including cross-site scripting (CVE-2020-14202), cross-site request forgery (CVE-2020-14203), and XXE injection (CVE-2020-14204). These vulnerabilities have been patched by the vendor in newer versions of WebFOCUS BI.
@@ -35,13 +34,13 @@
     <p class="text">
         Vulnerable version: 8.0 (SP6).  
     </p>
-        <a id="CVE-2020-14202"><h4>Vulnerability - Unauthenticated XSS in login page (CVE-2020-14202)</h4></a>
+        <a id="CVE-2020-14202"><h4>Vulnerability - Unauthenticated XSS in Login Page (CVE-2020-14202)</h4></a>
         <p class="text">
            WebFOCUS Business Intelligence has a cross-site scripting vulnerability because it fails to sufficiently sanitize user-supplied input.  An attacker may leverage this issue to execute arbitrary script code in the browser of an unsuspecting user in the context of the affected site.  This may allow the attacker to steal cookie-based authentication credentials and to launch other attacks.
         </p>
         <h4>Steps:</h4>
         <ol>
-            <li>Within a browser such as Google Chrome, navigate to the affected URL: hxxps:///webfocusbi.mysite.com/ibi_apps/WFServlet?%22%3e%3cscript%3ealert(%22XSS+in+Arbitrary+Parameter%22)%3C/script%3E%3C%22=foobar&IBIF_adhocfex=nothing</li>
+            <li>Within a browser such as Google Chrome, navigate to the affected URL: hxxps:///webfocusbi.mysite.com/ibi_apps/WFServlet?%22%3e%3cscript%3ealert(%22XSS+in+Arbitrary+Parameter%22)%3C/script%3E%3C%22=foobar</li>
             <li>Observe that a pop up appears, indicating that JavaScript was injected into the page and executed.</li>
         </ol>
         <img class="body-img" src="/img/webfocus_xss.png" width="60%">
@@ -54,7 +53,7 @@
         <p class="text">
             WebFOCUS Business Intelligence allows a Cross-Site Request Forgery (CSRF) attack within the /ibi_apps/WFServlet(.ibfs) endpoint.  Leveraging this bug, an attacker may cause a victim user to conduct actions within the application.  For example, an administrative user may be caused to create a malicious administrative user with no password.
         </p>
-        <h4>Steps to leverage CSRF to create a backdoor administrator):</h4>
+        <h4>Steps to leverage CSRF to create a backdoor administrator:</h4>
         <ol>
             <li>The victim (administrative user) authenticates to the WebFOCUS administration panel ("/ibi_apps/") as an administrator.</li>
             <li>The victim visits a page with attacker-controlled content.  This may be an internal SharePoint site or a website on the internet. </li>
