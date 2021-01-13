@@ -23,6 +23,10 @@ foreach ($files as &$file){
 	array_push($whitelist,$file);
 }
 
+function escape_evil($string){
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
+
 //Prints the list of all notes files within cheatsheets directory.
 function printList(){
 	//Look at each file within directory.  Returns an array
@@ -30,6 +34,7 @@ function printList(){
 	$files = scandir("cheatsheets");
 	print("<ul>");
 	foreach ($file as &$file){
+		$file = escape_evil($file);
 		print($file."\n");
 	}
 	//Loop through each file in array & look for ".txt"
@@ -41,6 +46,7 @@ function printList(){
 			$firstline = fgets(fopen("cheatsheets/".$file,'r'));
 			$title = str_replace("####","",$firstline);
 			$title = str_replace("----","",$title);
+			$title = escape_evil($title);
 			print($title."</a></li>");
 		}
 	}
@@ -61,11 +67,13 @@ function printNotes($topic){
 		//check if line is a title
 		if (substr($nextline,0,4)==="####"){
 			$title = str_replace("####","",$nextline);
+			$title = escape_evil($title);
 			print("<h2>".$title."</h2>");
 		}
 		//Check to see if line is a subtitle
 		elseif (substr($nextline,0,2)==='##'){
 			$subtitle = str_replace("##","",$nextline);
+			$subtitle = escape_evil($subtitle);
 			print("<h3>".$subtitle."</h3>");
 		}
 		else{
@@ -83,6 +91,7 @@ function printNotes($topic){
 					do {
 						//print the content without """
 						$content = str_replace("\"\"\"", "", $content);
+						$content = escape_evil($content);
 						print(" ".$content." ");
 						//look at next line
 						$content = fgets($f);
@@ -91,6 +100,7 @@ function printNotes($topic){
 					}while (substr($content,-4,-1) != "\"\"\"");
 					//remove """
 					$content = str_replace("\"\"\"", "", $content);
+					$content = escape_evil($content);
 					print($content."</pre></p>\n");
 				}
 				//Check for multiline / sublist (##)
@@ -107,12 +117,14 @@ function printNotes($topic){
 						if (strlen($subitem) > 2){
 							//Replace escaped semicolons and print subitem as list item.
 							$subitem = str_replace("####",";",$subitem);
+							$subitem = escape_evil($subitem);
 							print("<li>".$subitem."</li>");
 						}
 					}
 					print("</ul></pre></p>\n");
 				}
 				else{
+					$content = escape_evil($content);
 					print("<pre>\t".$content."</pre></p>\n");
 				}
 			}
