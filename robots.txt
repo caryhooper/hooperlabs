@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /passwords.txt
+Disallow: /s3cr3t_admin_page/*
+Disallow: /php-nuke-8-1-0-1-en/*
+Disallow: /c656c3b01e37b7b3de6bd5a41662fff5/*
+Disallow: /thegame?youjustlost

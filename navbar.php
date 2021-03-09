@@ -1,7 +1,5 @@
-<?php echo '
-
 <div class="title_pic">
-    <img src="/img/logo.jpg" width="150px">
+    <img src="/img/logo.png" width="150px">
 </div>
 <div class="title_box">
     <div class="title_text">
@@ -38,5 +36,3 @@
         <a href="/links.php">Links</a>
     </div>
 </div>
-';
-?>

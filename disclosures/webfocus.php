@@ -11,7 +11,7 @@
         Multiple Vulnerabilities in WebFOCUS BI (v.8.0 SP6)
     </h2>
     <div class="centre">
-        <img class="headrepic" src="https://www.informationbuilders.com/sites/default/files/styles/customer_spotlight/public/2019-07/webfocus_bi_teaser5.jpg" alt="Hack the Planet" height="200px" width="200px" align="middle">
+        <img class="headrepic" src="https://pvparuchuri.gallerycdn.vsassets.io/extensions/pvparuchuri/webfocus/0.2.3/1526656731887/Microsoft.VisualStudio.Services.Icons.Default" alt="Hack the Planet" height="100px" width="400px" align="middle">
     </div>
         <p class="date">2020-06-22</p>
     <h3>Background</h3>
