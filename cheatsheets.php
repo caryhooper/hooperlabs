@@ -82,50 +82,54 @@ function printNotes($topic){
 			//print the heading
 			print("<p class=\"heading\">".$nextline_ex[0]);
 			//check for nonzero content right of the delimiter
+
+
 			$content = $nextline_ex[1];
-			if (strlen($content) > 2){
-				//check for multiline content denoted by """
-				//check if line begins with triple quotes
-				if (substr($content,0,3) === "\"\"\""){
-					print("<pre>\t");
-					do {
-						//print the content without """
+			if (count($nextline_ex) > 1){
+				if (strlen($content) > 2){
+					//check for multiline content denoted by """
+					//check if line begins with triple quotes
+					if (substr($content,0,3) === "\"\"\""){
+						print("<pre>\t");
+						do {
+							//print the content without """
+							$content = str_replace("\"\"\"", "", $content);
+							$content = escape_evil($content);
+							print(" ".$content." ");
+							//look at next line
+							$content = fgets($f);
+							//loop stops if the next line ends with """, otherwise, go to next line
+							//Note: it would be better to strip all white space at end.  I'm sure PHP has a function like this.
+						}while (substr($content,-4,-1) != "\"\"\"");
+						//remove """
 						$content = str_replace("\"\"\"", "", $content);
 						$content = escape_evil($content);
-						print(" ".$content." ");
-						//look at next line
-						$content = fgets($f);
-						//loop stops if the next line ends with """, otherwise, go to next line
-						//Note: it would be better to strip all white space at end.  I'm sure PHP has a function like this.
-					}while (substr($content,-4,-1) != "\"\"\"");
-					//remove """
-					$content = str_replace("\"\"\"", "", $content);
-					$content = escape_evil($content);
-					print($content."</pre></p>\n");
-				}
-				//Check for multiline / sublist (##)
-				elseif(substr($content,0,2) === "##"){
-					//remove markup
-					$content = str_replace("##","",$content);
-					//ignore escaped semicolons.
-					$content = str_replace("\\;","####",$content);
-					//Create an array of items that were separated by semicolon
-					$content_ex = explode(";", $content);
-					print("<pre><ul>");
-					//loop through each subitem and insert into unordered list
-					foreach($content_ex as $subitem){
-						if (strlen($subitem) > 2){
-							//Replace escaped semicolons and print subitem as list item.
-							$subitem = str_replace("####",";",$subitem);
-							$subitem = escape_evil($subitem);
-							print("<li>".$subitem."</li>");
-						}
+						print($content."</pre></p>\n");
 					}
-					print("</ul></pre></p>\n");
-				}
-				else{
-					$content = escape_evil($content);
-					print("<pre>\t".$content."</pre></p>\n");
+					//Check for multiline / sublist (##)
+					elseif(substr($content,0,2) === "##"){
+						//remove markup
+						$content = str_replace("##","",$content);
+						//ignore escaped semicolons.
+						$content = str_replace("\\;","####",$content);
+						//Create an array of items that were separated by semicolon
+						$content_ex = explode(";", $content);
+						print("<pre><ul>");
+						//loop through each subitem and insert into unordered list
+						foreach($content_ex as $subitem){
+							if (strlen($subitem) > 2){
+								//Replace escaped semicolons and print subitem as list item.
+								$subitem = str_replace("####",";",$subitem);
+								$subitem = escape_evil($subitem);
+								print("<li>".$subitem."</li>");
+							}
+						}
+						print("</ul></pre></p>\n");
+					}
+					else{
+						$content = escape_evil($content);
+						print("<pre>\t".$content."</pre></p>\n");
+					}
 				}
 			}
 		}

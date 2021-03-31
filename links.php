@@ -23,7 +23,8 @@
                 "Step by step guide to Linux Kernel Exploitation (@LexfoSecurite)" => "https://blog.lexfo.fr/cve-2017-11176-linux-kernel-exploitation-part1.html",
                 "Socket Reconstruction Technique for BOF" => "https://barriersec.com/2019/05/exploiting-vulnserver-trun-command-using-socket-reconstruction-technique/",
                 
-                "Native VBA Reverse Shell (John Woodman @JohnWoodman15)" => "https://john-woodman.com/research/malicious-vba-macros-trials-tribulation"
+                "Native VBA Reverse Shell (John Woodman @JohnWoodman15)" => "https://john-woodman.com/research/malicious-vba-macros-trials-tribulation",
+                "Reverse Engineering Course (courtesy of @mytechnotalent)" => "https://github.com/mytechnotalent/Reverse-Engineering"
             ];
             foreach ($links as $desc => $link) {
                 echo "<li><a href=\"{$link}\">{$desc}</a></li>";
