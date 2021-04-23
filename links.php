@@ -24,7 +24,8 @@
                 "Socket Reconstruction Technique for BOF" => "https://barriersec.com/2019/05/exploiting-vulnserver-trun-command-using-socket-reconstruction-technique/",
                 
                 "Native VBA Reverse Shell (John Woodman @JohnWoodman15)" => "https://john-woodman.com/research/malicious-vba-macros-trials-tribulation",
-                "Reverse Engineering Course (courtesy of @mytechnotalent)" => "https://github.com/mytechnotalent/Reverse-Engineering"
+                "Reverse Engineering Course (courtesy of @mytechnotalent)" => "https://github.com/mytechnotalent/Reverse-Engineering",
+                "Exploiting System Mechanic Driver (Paolo Stagno aka VoidSec)" => "https://voidsec.com/exploiting-system-mechanic-driver/"
             ];
             foreach ($links as $desc => $link) {
                 echo "<li><a href=\"{$link}\">{$desc}</a></li>";
