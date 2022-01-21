@@ -17,7 +17,7 @@
     <p class="date">2020-01-20</p>
     <h3>Equipment</h3>
     <p class="text">
-    For an upcoming Man-in-the-Middle (MitM) demonstration, I needed to create a portable device.  This device needed to be capable of hosting a WiFi network while simluataneously being connected to one.
+    For an upcoming Man-in-the-Middle (MitM) demonstration, I needed to create a portable device.  This device needed to be capable of hosting a WiFi network while simultaneously being connected to one.
     After some research, I concluded that my Raspberry PI 2 with the FruityWiFi framework would be enough to PWN devices.
     </p>
     <p class="text">

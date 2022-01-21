@@ -12,7 +12,7 @@
         <a href="/index.php">Home</a>
 
         <div class="dropdown">
-            <button onclick="showOptions()" class="dropbtn">
+            <button id="b2r-button" class="dropbtn">
                 Boot to Root
             </button>
             <div id="menuDropdown" class="dropdown-content">
@@ -25,7 +25,7 @@
         </div>
         <a href="/cheatsheets.php">Cheat Sheets</a>
         <div class="dropdown">
-            <button onclick="showOptions2()" class="dropbtn2">
+            <button id="mobile-button" class="dropbtn2">
                 Mobile
             </button>
             <div id="menuDropdown2" class="dropdown-content">
@@ -36,3 +36,7 @@
         <a href="/links.php">Links</a>
     </div>
 </div>
+<script id="navbar-onclick">
+    document.getElementById("b2r-button").addEventListener('click',showOptions;
+    document.getElementById("mobile-button").addEventListener('click',showOptions2);
+</script>
