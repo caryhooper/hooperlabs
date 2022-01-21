@@ -21,3 +21,8 @@ window.onclick = function(e) {
 
     }
 }
+//adding event listeners here to comply with CSP and prevent inline scripts.
+document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById("b2r-button").addEventListener('click',showOptions);
+    document.getElementById("mobile-button").addEventListener('click',showOptions2);
+});
