@@ -10,7 +10,7 @@
         <h2>
             Inclusiveness
         </h2>
-        <img class="headerpic" src="http://placekitten.com/100/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
+        <img class="headerpic" src="https://placekitten.com/100/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
         <p class="date">2020-04-15</p>
         <p class="text">
             This VM was created by <a href="https://twitter.com/h4sh5">h4sh5</a> and Richard Lee.  I love the concept!  Turned out this was a beginner/intermediate box forcing the attacker to put two things together to get a shell.  For privilege escalation, I would have liked to see a multi-step path to root (www-data to user to root), but the privesc exploit reminded me of the basics.  I was stuck for a while and didn't root the VM until I broke apart the problem into its components.  The VM can be downloaded:<a href="https://www.vulnhub.com/entry/inclusiveness-1,422/">here</a>.

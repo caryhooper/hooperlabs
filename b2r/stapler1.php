@@ -10,7 +10,7 @@
         <h2>
             Stapler 1  
         </h2>
-        <img class="headerpic" src="http://placekitten.com/100/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
+        <img class="headerpic" src="https://placekitten.com/100/100" alt="Hack the Planet" height="200px" width="300px" align="middle" align="left">
         <p class="date">2020-02-14</p>
         <p class="text">
             This VM was created by <a href="https://twitter.com/g0tmi1k">@g0tmi1k</a>.  This VM was on a friend's network and I was given the IP address.  This was one of the earlier VulnHub machines that has a TON of writeups available.
