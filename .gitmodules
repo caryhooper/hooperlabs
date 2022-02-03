@@ -1,3 +1,6 @@
 [submodule "recipes"]
 	path = recipes
 	url = https://media.hooperlabs.xyz/git/cary/recipes.git
+[submodule "cheatsheets"]
+	path = cheatsheets
+	url = https://www.github.com/caryhooper/cheatsheets.git
