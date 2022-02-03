@@ -34,5 +34,6 @@
         </div>
         <a href="/about.php">About</a>
         <a href="/links.php">Links</a>
+        <a href="/recipes.php">Recipes</a>
     </div>
 </div>

@@ -8,10 +8,11 @@ tag.class -- chaining (AND)
 tag, .class {(Both)}
 */
 
+/*TODO - Make navbar.php wrap around (title larger) when window is smaller than certain size.*/
+
 h1 {
     font-family: Verdana, sans-serif;
     font-size: 32px;
-    color: white;
 
 /*    text-align: left;*/
     
@@ -54,6 +55,7 @@ img {
     position: relative;
     left: 25px;
     text-align: left;
+    color: white;
 }
 
 .navbar{

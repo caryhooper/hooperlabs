@@ -1,0 +1,6 @@
+[submodule "recipes"]
+	path = recipes
+	url = git@media.hooperlabs.xyz:cary/recipes
+[submodule "cheatsheets"]
+	path = cheatsheets
+	url = git@github.com:caryhooper/cheatsheets
