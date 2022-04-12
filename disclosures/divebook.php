@@ -11,7 +11,7 @@
         Multiple Vulnerabilities in DiveBook WordPress Plugin (v.1.1.4)
     </h2>
     <div class="centre">
-        <img class="headrepic" src="https://pluginsroom.com/assets/img/wordpress-plugins.png" alt="Hack the Planet" height="100px" width="100px" align="middle">
+<!--        <img class="headrepic" src="https://pluginsroom.com/assets/img/wordpress-plugins.png" alt="Hack the Planet" height="100px" width="100px" align="middle">-->
     </div>
     
     <p class="date">2020-09-15</p>

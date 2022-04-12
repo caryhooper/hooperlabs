@@ -15,7 +15,7 @@
      <p class="text">
         Hooper Labs does not participate in bug bounty programs, but instead relies on responsible disclosure <a href="https://en.wikipedia.org/wiki/Responsible_disclosure">(link)</a>.
         Effectively communicating vulnerabilities and risks to the vendor, users, and public ensure that risk can be documented, calculated, and mitigated.  We hope that through this 
-        process that the Information Domain may be marginally safer.
+        process the Information Domain may be marginally safer.
     </p>
 </div>';
 ?>

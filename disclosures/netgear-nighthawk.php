@@ -11,7 +11,7 @@
         Stored XSS in NETGEAR Nighthawk C7000v2 Administration Interface (V1.02.09)
     </h2>
     <div class="center">
-        <img class="headerpic" src="https://www.netgear.com/images/HomePage/RBU/home-rbu-my-netgear-medium.png" alt="Hack the Planet" align="middle">
+<!--        <img class="headerpic" src="https://www.netgear.com/images/HomePage/RBU/home-rbu-my-netgear-medium.png" alt="Hack the Planet" align="middle">-->
     </div>
     <p class="date">2020-02-09</p>
     <h3>Background</h3>
