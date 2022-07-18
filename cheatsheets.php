@@ -7,7 +7,11 @@
 <?php include 'navbar.php';?>
 
     <div class="body-content">
-
+<?php 
+    include 'lib/Parsedown.php';  //https://raw.githubusercontent.com/erusev/parsedown/master/Parsedown.php
+    include 'lib/ParsedownExtra.php'; //https://raw.githubusercontent.com/erusev/parsedown-extra/master/ParsedownExtra.php
+    include 'lib/ParsedownExtraPlugin.php';  //https://raw.githubusercontent.com/taufik-nurrohman/parsedown-extra-plugin/main/ParsedownExtraPlugin.php
+?> 
 <?php 
 //Development for presentation of cheat sheets.
 //1. Locate each file in cheatsheet directory.
@@ -53,89 +57,102 @@ function printList(){
 	print("</ul>");
 }
 
+
+//Uses Parsedown
+function printNotes($topic){
+	$Parsedown = new ParsedownExtraPlugin();
+    $Parsedown->setMarkupEscaped(true);
+    $Parsedown->setSafeMode(true);
+
+    $file = file_get_contents("cheatsheets/".$recipe.".md");
+    echo $Parsedown->text($file);
+
+    echo "</br>";
+}
+
 //Parses through notes file and prints notes in a prettified (subjective) format.
 //Features: checks for title (^####), subtitle (^##), note item (----), multiline note item (----""")
 //, and sublist (----##foo;bar;foobar)
-function printNotes($topic){
-	//print("<h2>".$topic."</h2><br /><br />\n");
-	$f = fopen("cheatsheets/".$topic . ".txt",'r');
-	while(! feof($f) ){
+// function printNotes($topic){
+// 	//print("<h2>".$topic."</h2><br /><br />\n");
+// 	$f = fopen("cheatsheets/".$topic . ".txt",'r');
+// 	while(! feof($f) ){
 
-		//grab next line
-		$nextline = fgets($f);
+// 		//grab next line
+// 		$nextline = fgets($f);
 		
-		//check if line is a title
-		if (substr($nextline,0,4)==="####"){
-			$title = str_replace("####","",$nextline);
-			$title = escape_evil($title);
-			print("<h2>".$title."</h2>");
-		}
-		//Check to see if line is a subtitle
-		elseif (substr($nextline,0,2)==='##'){
-			$subtitle = str_replace("##","",$nextline);
-			$subtitle = escape_evil($subtitle);
-			print("<h3>".$subtitle."</h3>");
-		}
-		else{
-			//explode on ---- delimiter
-			$nextline_ex = explode("----",$nextline);
-			//print the heading
-			print("<p class=\"heading\">".$nextline_ex[0]);
-			//check for nonzero content right of the delimiter
+// 		//check if line is a title
+// 		if (substr($nextline,0,4)==="####"){
+// 			$title = str_replace("####","",$nextline);
+// 			$title = escape_evil($title);
+// 			print("<h2>".$title."</h2>");
+// 		}
+// 		//Check to see if line is a subtitle
+// 		elseif (substr($nextline,0,2)==='##'){
+// 			$subtitle = str_replace("##","",$nextline);
+// 			$subtitle = escape_evil($subtitle);
+// 			print("<h3>".$subtitle."</h3>");
+// 		}
+// 		else{
+// 			//explode on ---- delimiter
+// 			$nextline_ex = explode("----",$nextline);
+// 			//print the heading
+// 			print("<p class=\"heading\">".$nextline_ex[0]);
+// 			//check for nonzero content right of the delimiter
 
 
-			$content = $nextline_ex[1];
-			if (count($nextline_ex) > 1){
-				if (strlen($content) > 2){
-					//check for multiline content denoted by """
-					//check if line begins with triple quotes
-					if (substr($content,0,3) === "\"\"\""){
-						print("<pre>\t");
-						do {
-							//print the content without """
-							$content = str_replace("\"\"\"", "", $content);
-							$content = escape_evil($content);
-							print(" ".$content." ");
-							//look at next line
-							$content = fgets($f);
-							//loop stops if the next line ends with """, otherwise, go to next line
-							//Note: it would be better to strip all white space at end.  I'm sure PHP has a function like this.
-						}while (substr($content,-4,-1) != "\"\"\"");
-						//remove """
-						$content = str_replace("\"\"\"", "", $content);
-						$content = escape_evil($content);
-						print($content."</pre></p>\n");
-					}
-					//Check for multiline / sublist (##)
-					elseif(substr($content,0,2) === "##"){
-						//remove markup
-						$content = str_replace("##","",$content);
-						//ignore escaped semicolons.
-						$content = str_replace("\\;","####",$content);
-						//Create an array of items that were separated by semicolon
-						$content_ex = explode(";", $content);
-						print("<pre><ul>");
-						//loop through each subitem and insert into unordered list
-						foreach($content_ex as $subitem){
-							if (strlen($subitem) > 2){
-								//Replace escaped semicolons and print subitem as list item.
-								$subitem = str_replace("####",";",$subitem);
-								$subitem = escape_evil($subitem);
-								print("<li>".$subitem."</li>");
-							}
-						}
-						print("</ul></pre></p>\n");
-					}
-					else{
-						$content = escape_evil($content);
-						print("<pre>\t".$content."</pre></p>\n");
-					}
-				}
-			}
-		}
-	}
-	fclose($f);
-}
+// 			$content = $nextline_ex[1];
+// 			if (count($nextline_ex) > 1){
+// 				if (strlen($content) > 2){
+// 					//check for multiline content denoted by """
+// 					//check if line begins with triple quotes
+// 					if (substr($content,0,3) === "\"\"\""){
+// 						print("<pre>\t");
+// 						do {
+// 							//print the content without """
+// 							$content = str_replace("\"\"\"", "", $content);
+// 							$content = escape_evil($content);
+// 							print(" ".$content." ");
+// 							//look at next line
+// 							$content = fgets($f);
+// 							//loop stops if the next line ends with """, otherwise, go to next line
+// 							//Note: it would be better to strip all white space at end.  I'm sure PHP has a function like this.
+// 						}while (substr($content,-4,-1) != "\"\"\"");
+// 						//remove """
+// 						$content = str_replace("\"\"\"", "", $content);
+// 						$content = escape_evil($content);
+// 						print($content."</pre></p>\n");
+// 					}
+// 					//Check for multiline / sublist (##)
+// 					elseif(substr($content,0,2) === "##"){
+// 						//remove markup
+// 						$content = str_replace("##","",$content);
+// 						//ignore escaped semicolons.
+// 						$content = str_replace("\\;","####",$content);
+// 						//Create an array of items that were separated by semicolon
+// 						$content_ex = explode(";", $content);
+// 						print("<pre><ul>");
+// 						//loop through each subitem and insert into unordered list
+// 						foreach($content_ex as $subitem){
+// 							if (strlen($subitem) > 2){
+// 								//Replace escaped semicolons and print subitem as list item.
+// 								$subitem = str_replace("####",";",$subitem);
+// 								$subitem = escape_evil($subitem);
+// 								print("<li>".$subitem."</li>");
+// 							}
+// 						}
+// 						print("</ul></pre></p>\n");
+// 					}
+// 					else{
+// 						$content = escape_evil($content);
+// 						print("<pre>\t".$content."</pre></p>\n");
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// 	fclose($f);
+// }
 
 //Main program logic.  Checks to see if we should return the table of contents or the cheat sheet.
 //TODO - put references at bottom

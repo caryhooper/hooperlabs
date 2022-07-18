@@ -56,10 +56,7 @@ function printRecipe($recipe){
     $Parsedown = new ParsedownExtraPlugin();
     $Parsedown->setMarkupEscaped(true);
     $Parsedown->setSafeMode(true);
-    //{.foo} → <tag class="foo">
 
-	//print("<h2>".$recipe."</h2><br /><br />\n");
-    // echo $Parsedown->text('Hello_Parsedown_!');
     $file = file_get_contents("recipes/".$recipe.".md");
     echo $Parsedown->text($file);
 
