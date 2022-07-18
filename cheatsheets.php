@@ -64,7 +64,7 @@ function printNotes($topic){
     $Parsedown->setMarkupEscaped(true);
     $Parsedown->setSafeMode(true);
 
-    $file = file_get_contents("cheatsheets/".$recipe.".md");
+    $file = file_get_contents("cheatsheets/".$topic.".md");
     echo $Parsedown->text($file);
 
     echo "</br>";
@@ -158,12 +158,11 @@ function printNotes($topic){
 //TODO - put references at bottom
 //Clickable list of all keys?
 //Searchable?
-$user_input = $_GET['topic'];
-if (isset($user_input) && !empty($user_input)){
+if(isset($_GET['topic']) && !empty($_GET['topic']))
+{
 	//security whitelist check
-
-	if (in_array($user_input,$whitelist)){
-		printNotes($user_input);
+	if (in_array($_GET['topic'],$whitelist)){
+		printNotes($_GET['topic']);
 	}
 	else{
 		//Silent Error
@@ -172,7 +171,7 @@ if (isset($user_input) && !empty($user_input)){
 
 	}
 }
-else{
+else {
 	printList();
 }
 ?>
