@@ -37,21 +37,22 @@ function printList(){
 	print("<h2>List of Cheat Sheets</h2>");
 	$files = scandir("cheatsheets");
 	print("<ul>");
-	foreach ($file as &$file){
-		$file = escape_evil($file);
-		print($file."\n");
-	}
-	//Loop through each file in array & look for ".txt"
+
+	//Loop through each file in array & look for ".md"
 	foreach ($files as &$file){
-		//Find all files with ".txt" in them.  
-		if (strpos($file,".txt")){
-			$topic = explode(".",$file)[0];
-			print("<li>"."<a class='cheatsheet' href='cheatsheets.php?topic=".$topic."'>");
-			$firstline = fgets(fopen("cheatsheets/".$file,'r'));
-			$title = str_replace("####","",$firstline);
-			$title = str_replace("----","",$title);
-			$title = escape_evil($title);
-			print($title."</a></li>");
+		//Find all files with ".md" in them.  
+        $file = escape_evil($file);
+		if (strpos($file,".md")){
+            if (strpos($file,"ormat") == false){
+                //print($file." doesn't contain format.");
+                $recipe = explode(".",$file)[0];
+                print("<li>"."<a class='recipes' href='cheatsheets.php?topic=".$recipe."'>");
+                $handle = fopen("cheatsheets/".$file,'r');
+                $firstline = fgets($handle);
+                $title = str_replace("#","",$firstline);
+                print($title."</a></li>");
+                fclose($handle);
+            }
 		}
 	}
 	print("</ul>");

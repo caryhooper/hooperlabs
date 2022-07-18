@@ -41,9 +41,11 @@ function printList(){
                 //print($file." doesn't contain Template.");
                 $recipe = explode(".",$file)[0];
                 print("<li>"."<a class='recipes' href='recipes.php?recipe=".$recipe."'>");
-                $firstline = fgets(fopen("recipes/".$file,'r'));
+                $handle = fopen("recipes/".$file,'r');
+                $firstline = fgets($handle);
                 $title = str_replace("#","",$firstline);
                 print($title."</a></li>");
+                fclose($handle);
             }
 		}
 	}
