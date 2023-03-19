@@ -8,7 +8,7 @@
         </h1>
     </div>
 
-    <script src='js/menu.js'></script>
+    <script src='/js/menu.js'></script>
     <div class="navbar">
         <a href="/index.php">Home</a>
         <div id='b2r-div' class="dropdown">
