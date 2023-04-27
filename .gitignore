@@ -5,3 +5,11 @@ hooperlabs.sln
 cheatsheets/.git/
 cheatsheets/*
 temp/
+.obsidian
+.obsidian/
+.obsidian/*
+.obsidian/**
+b2r/.obsidian
+b2r/.obsidian/**
+b2r/.obsidian/
+b2r/.obsidian/*
