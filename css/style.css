@@ -228,5 +228,9 @@ button {
     text-align: center;
 }
 
-
-
+.request_id {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 6px;
+    padding: 2px;
+    text-align: center;
+}

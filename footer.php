@@ -7,7 +7,7 @@
     </p>
     </br>
     </br>
-    <p style="font-size: 6px">';
+    <p class="request_id">';
 echo 'Request ID: '.hash('sha3-512',random_bytes(512));
 ?>
 
