@@ -7,8 +7,8 @@
     </p>
     </br>
     </br>
-    <p class="text">';
-echo hash('sha3-512',random_bytes(512));
+    <p class="text" style="font-size: 6px">';
+echo 'Request ID: '.hash('sha3-512',random_bytes(512));
 ?>
 
 <?php echo '</p>
