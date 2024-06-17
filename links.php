@@ -26,7 +26,7 @@
                 "Native VBA Reverse Shell (John Woodman @JohnWoodman15)" => "https://john-woodman.com/research/malicious-vba-macros-trials-tribulation",
                 "Reverse Engineering Course (courtesy of @mytechnotalent)" => "https://github.com/mytechnotalent/Reverse-Engineering",
                 "Exploiting System Mechanic Driver (Paolo Stagno aka VoidSec)" => "https://voidsec.com/exploiting-system-mechanic-driver/",
-                "0xBEN's Blog about Hacking, Powershell, and Coffee" => "https://benheater.com/"
+                "0xBEN's Blog about Hacking, Powershell, and Coffee (Ben Heater @0xBEN)" => "https://benheater.com/"
             ];
             foreach ($links as $desc => $link) {
                 echo "<li><a href=\"{$link}\">{$desc}</a></li>";
