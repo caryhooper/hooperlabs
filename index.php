@@ -19,8 +19,8 @@
         <img src="/img/cat.jpg" height="100px" width="200px">
         <p class="text">This site uses cats to demonstrate impact.</p>
     </div>
-</body>
 
 <?php include 'footer.php';?>
+</body>
 
 </html>
