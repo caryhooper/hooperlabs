@@ -1,4 +1,5 @@
 <?php echo '<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         Hooper Labs - Adversarial Techniques and Research
     </title>

@@ -46,8 +46,8 @@ img {
 /*    background: #666;*/
 	background-image: linear-gradient(to right, #2b215e, #8b2841);
     left: 200px;
+    right: 0;
     top: 12px;
-    width: 100%;
 }
 
 .title_text {
@@ -90,7 +90,8 @@ h3, h4, h5, h6{
 } 
 
 .body-content {
-    margin: 5px;
+    max-width: 800px;
+    margin: 5px auto;
     line-height: 1.5;
 }
 
