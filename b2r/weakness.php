@@ -1,5 +1,3 @@
-<html>
-
 <?php $pageTitle = 'W34KN3SS Walkthrough'; $pageDescription = 'Walkthrough of the Weakness (W34KN3SS) VulnHub machine.'; include '../header.php';?>
 
 <body>

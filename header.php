@@ -1,8 +1,10 @@
 <?php
 $pageTitle = $pageTitle ?? 'Adversarial Techniques and Research';
 $pageDescription = $pageDescription ?? 'A collection of computer security resources including penetration testing cheat sheets, boot2root writeups, vulnerability research, and security tooling.';
-echo '<head>
+echo '<html lang="en">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/favicon.ico" sizes="any">
     <title>' . htmlspecialchars($pageTitle) . ' | Hooper Labs</title>
     <meta name="description" content="' . htmlspecialchars($pageDescription) . '">
     <meta property="og:title" content="' . htmlspecialchars($pageTitle) . ' | Hooper Labs">

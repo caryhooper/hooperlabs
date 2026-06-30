@@ -1,5 +1,3 @@
-<html>
-
 <?php $pageTitle = 'Multiple Vulnerabilities in WebFOCUS BI'; $pageDescription = 'Multiple vulnerabilities in the WebFOCUS Business Intelligence platform v8.0 SP6.'; include '../header.php';?>
 
 <body>

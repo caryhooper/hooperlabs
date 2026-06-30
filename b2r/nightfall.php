@@ -1,5 +1,3 @@
-<html>
-
 <?php $pageTitle = 'Nightfall Walkthrough'; $pageDescription = 'Walkthrough of the Sunset Nightfall VulnHub machine by whitecr0wz.'; include '../header.php';?>
 
 <body>

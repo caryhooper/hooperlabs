@@ -1,4 +1,3 @@
-<html>
 <?php $pageTitle = 'Recipes'; $pageDescription = 'Security recipes and tutorials.'; include 'header.php';?>
 <body>
 

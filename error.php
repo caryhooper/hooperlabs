@@ -1,5 +1,3 @@
-<html>
-
 <?php $pageTitle = 'Error'; include 'header.php';?>
 
 <body>

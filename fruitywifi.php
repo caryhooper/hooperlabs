@@ -1,5 +1,3 @@
-<html>
-
 <?php $pageTitle = 'Raspberry Pi WiFi Pineapple'; $pageDescription = 'Building a portable Man-in-the-Middle device with a Raspberry Pi 2 and the FruityWiFi framework.'; include 'header.php';?>
 
 <body>

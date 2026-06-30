@@ -1,5 +1,3 @@
-<html>
-
 <?php $pageTitle = 'Stapler 1 Walkthrough'; $pageDescription = 'Walkthrough of the Stapler 1 VulnHub machine.'; include '../header.php';?>
 
 <body>

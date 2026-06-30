@@ -1,5 +1,3 @@
-<html>
-
 <?php $pageTitle = 'Kerberoasting'; $pageDescription = 'A deep dive into Kerberoasting attacks against Active Directory, including SPN enumeration and offline cracking.'; include '../header.php';?>
 
 <body>
