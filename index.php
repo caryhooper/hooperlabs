@@ -1,6 +1,6 @@
 <html>
 
-<?php include 'header.php';?>
+<?php $pageTitle = 'Home'; include 'header.php';?>
 
 <body>
 
@@ -16,7 +16,7 @@
         <br />
     </div>
     <div>
-        <img src="/img/cat.jpg" height="100px" width="200px">
+        <img src="/img/cat.jpg" alt="Cat demonstrating security impact" height="100px" width="200px">
         <p class="text">This site uses cats to demonstrate impact.</p>
     </div>
 

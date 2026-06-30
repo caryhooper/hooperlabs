@@ -1,6 +1,6 @@
 <html>
 
-<?php include 'header.php';?>
+<?php $pageTitle = 'Cheat Sheets'; $pageDescription = 'Penetration testing cheat sheets covering network analysis, web exploitation, and server administration.'; include 'header.php';?>
 
 <body>
 

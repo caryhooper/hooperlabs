@@ -1,5 +1,5 @@
 <html>
-<?php include 'header.php';?>
+<?php $pageTitle = 'Recipes'; $pageDescription = 'Security recipes and tutorials.'; include 'header.php';?>
 <body>
 
 <?php include 'navbar.php';?>

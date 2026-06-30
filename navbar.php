@@ -1,5 +1,5 @@
 <div class="title_pic">
-    <img src="/img/logo.png" width="150px">
+    <img src="/img/logo.png" alt="Hooper Labs logo" width="150px">
 </div>
 <div class="title_box">
     <div class="title_text">

@@ -1,6 +1,6 @@
 <html>
 
-<?php include '../header.php';?>
+<?php $pageTitle = 'Inclusiveness Walkthrough'; $pageDescription = 'Walkthrough of the Inclusiveness VulnHub machine — LFI, FTP, and PATH hijacking privilege escalation.'; include '../header.php';?>
 
 <body>
 

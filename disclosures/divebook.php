@@ -1,6 +1,6 @@
 <html>
 
-<?php include '../header.php';?>
+<?php $pageTitle = 'Multiple Vulnerabilities in DiveBook'; $pageDescription = 'SQL injection, XSS, and authorization bypass vulnerabilities in the DiveBook WordPress plugin.'; include '../header.php';?>
 
 <body>
 

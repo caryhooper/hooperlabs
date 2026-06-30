@@ -1,6 +1,6 @@
 <html>
 
-<?php include '../header.php';?>
+<?php $pageTitle = 'Stored XSS in NETGEAR Nighthawk C7000v2'; $pageDescription = 'Stored cross-site scripting vulnerability in the NETGEAR Nighthawk C7000v2 administration interface.'; include '../header.php';?>
 
 <body>
 

@@ -1,6 +1,6 @@
 <html>
 
-<?php include 'header.php';?>
+<?php $pageTitle = 'Links'; $pageDescription = 'Curated links for future learning in information security and penetration testing.'; include 'header.php';?>
 
 <body>
 

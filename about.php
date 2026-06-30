@@ -1,6 +1,6 @@
 <html>
 
-<?php include 'header.php';?>
+<?php $pageTitle = 'About'; $pageDescription = 'Learn about Hooper Labs and the mission to provide information security research and education.'; include 'header.php';?>
 
 <body>
 

@@ -1,6 +1,6 @@
 <html>
 
-<?php include '../header.php';?>
+<?php $pageTitle = 'My Tomcat Host Walkthrough'; $pageDescription = 'Walkthrough of the My Tomcat Host VulnHub machine.'; include '../header.php';?>
 
 <body>
 

@@ -1,6 +1,6 @@
 <html>
 
-<?php include 'header.php';?>
+<?php $pageTitle = 'Error'; include 'header.php';?>
 
 <body>
 

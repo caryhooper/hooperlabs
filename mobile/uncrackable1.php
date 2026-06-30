@@ -1,6 +1,6 @@
 <html>
 
-<?php include '../header.php';?>
+<?php $pageTitle = 'OWASP Uncrackable 1'; $pageDescription = 'Android hacking with frida — solving the OWASP Uncrackable 1 Crack-Me with static and dynamic analysis.'; include '../header.php';?>
 
 <body>
 
