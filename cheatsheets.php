@@ -6,7 +6,7 @@
 
 <?php include 'navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
 <?php 
     include 'lib/Parsedown.php';  //https://raw.githubusercontent.com/erusev/parsedown/master/Parsedown.php
     include 'lib/ParsedownExtra.php'; //https://raw.githubusercontent.com/erusev/parsedown-extra/master/ParsedownExtra.php
@@ -94,7 +94,7 @@ else {
 }
 ?>
 
-    </div>
+    </main>
 </body>
 
 <?php include 'footer.php';?>

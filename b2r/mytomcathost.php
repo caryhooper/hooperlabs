@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h2>
             My Tomcat Host
         </h2>
@@ -219,7 +219,7 @@
         <p class="text">
             Not a bad box at all!  It definitely made me squirm a bit when I saw that I'd need to use Java to escalate privileges to root.  This is certainly one of the easier VulnHub boxes I completed, but I'm grateful to have rooted this one.  I was reminded of the versatility of Java and surprised that nobody has added java into the GTFOBins repository.  
         </p>
-    </div>
+    </main>
 </body>
 <?php include '../footer.php';?>
 </html>

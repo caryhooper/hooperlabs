@@ -1,3 +1,4 @@
+<header>
 <div class="title_pic">
     <img src="/img/logo.png" alt="Hooper Labs logo" width="150px">
 </div>
@@ -37,3 +38,4 @@
         <a href="/recipes.php">Recipes</a>
     </div>
 </div>
+</header>

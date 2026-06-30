@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h2>
             W34KN3SS (Weakness)
         </h2>
@@ -227,7 +227,7 @@
         </p>
 
         <br>
-    </div>
+    </main>
 
 
 </body>

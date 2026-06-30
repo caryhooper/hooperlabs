@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-<div class="body-content">
+<main class="body-content">
     <h2>
         Multiple Vulnerabilities in DiveBook WordPress Plugin (v.1.1.4)
     </h2>
@@ -92,7 +92,7 @@
             <li>Firefox v68.9.0esr</li>
             <li>WordPress 5.4.2</li>
         </ul>
-    </div>
+    </main>
      <?php include 'policy.php';?>
 </body>
 

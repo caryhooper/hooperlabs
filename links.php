@@ -6,7 +6,7 @@
 
 <?php include 'navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h3>
             Links for Future Learning
         </h3>
@@ -35,7 +35,7 @@
             </ul>
         </p>
         <br />
-    </div>
+    </main>
 </body>
 <?php include 'footer.php';?>
 

@@ -6,7 +6,7 @@
 
 <?php include 'navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h3>
             ERROR!
         </h3>
@@ -19,7 +19,7 @@
         ?>
         </p>
         <br>
-    </div>
+    </main>
 </body>
 <?php include 'footer.php';?>
 

@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-<div class="body-content">
+<main class="body-content">
     <h2>
         Stored XSS in NETGEAR Nighthawk C7000v2 Administration Interface (V1.02.09)
     </h2>
@@ -49,7 +49,7 @@
             <li>Router Model - C7000v2</li>
         </ul>
 
-    </div>
+    </main>
 
 </body>
 

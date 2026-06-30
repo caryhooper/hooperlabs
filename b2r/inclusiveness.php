@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h2>
             Inclusiveness
         </h2>
@@ -264,7 +264,7 @@
         <p class="text">
             I really enjoyed rooting inclusiveness!  Looking back, I get the name as its vulnerable to a Local File Inclusion and $PATH tampering.  I especially enjoy rooting machines that require leveraging multiple services or configurations to achieve RCE.  The privilege escalation was a nice reminder as well to break apart a problem and think critically about the components.  Big thanks to the creators, <a href="https://twitter.com/h4sh5">h4sh5</a> and Richard Lee.  
         </p>
-    </div>
+    </main>
 </body>
 <?php include '../footer.php';?>
 </html>

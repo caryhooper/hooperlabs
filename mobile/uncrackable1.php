@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h2>
             OWASP Uncrackable 1
         </h2>
@@ -326,7 +326,7 @@
             In conclusion, we combined both static and dynamic analysis of the Android Uncrackable 1 application to bypass security function and discover secrets.  First, we prepared the environment including an emulated Android device running frida-server.  Next, we decompiled and analyzed the APK source code (Java).  Last, we interfaced with the frida API using Python and JavaScript to hook/bypass security functions and invoke arbitrary functions within the application at runtime.  I'm looking forward to writing more about android hacking with frida!
         </p>
         <br>
-    </div>
+    </main>
 </body>
 
 <?php include '../footer.php';?>

@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-<div class="body-content">
+<main class="body-content">
     <h2>
         Multiple Vulnerabilities in WebFOCUS BI (v.8.0 SP6)
     </h2>
@@ -119,7 +119,7 @@
             <li>2020-06-19 - CVEs received and sent to IBI.</li>
         	<li>2020-06-22 - Public Disclosure.</li>
         </ul>
-    </div>
+    </main>
      <?php include 'policy.php';?>
 </body>
 

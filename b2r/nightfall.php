@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h2>
             Nightfall  
         </h2>
@@ -276,7 +276,7 @@
                 It also looked like there existed a /scripts folder containing a SUID "find" binary owned by nightfall.  This may have been a privilege escalation vector to get from matt to nightfall.  Anyway, I liked my method better.  r00tr00t! 
             </p>
 
-    </div>
+    </main>
 
 
 </body>

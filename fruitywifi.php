@@ -6,7 +6,7 @@
 
 <?php include 'navbar.php';?>
 
-<div class="body-content">
+<main class="body-content">
     <h2>
         Raspberry Pi WiFi Pineapple (with FruityWiFi)
     </h2>
@@ -57,7 +57,7 @@
         </ol>
 
 
-    </div>
+    </main>
 
 </body>
 

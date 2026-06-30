@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h2>
             Stapler 1  
         </h2>
@@ -357,7 +357,7 @@ b6b545dc11b7a270f4bad23432190c75162c4a2b
         </p>
 
 
-    </div>
+    </main>
 
 
 </body>

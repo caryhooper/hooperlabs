@@ -6,7 +6,7 @@
 
 <?php include 'navbar.php';?>
 
-    <div class="body-content">
+    <main class="body-content">
         <h3>
             About
         </h3>
@@ -14,7 +14,7 @@
 		This site is a collection of knowledge and constantly under construction.  We hope it helps to teach you something. 
         </p>
         <br>
-    </div>
+    </main>
 </body>
 <?php include 'footer.php';?>
 

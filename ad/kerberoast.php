@@ -6,7 +6,7 @@
 
 <?php include '../navbar.php';?>
 
-<div class="body-content">
+<main class="body-content">
     <h2>
         Kerberoasting (Under Construction)
     </h2>
@@ -108,7 +108,7 @@
 
         
 
-    </div>
+    </main>
 
 
 </body>
